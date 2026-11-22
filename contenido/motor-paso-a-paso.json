@@ -1,0 +1,25 @@
+{
+  "orden": 10,
+  "area": "Software y automatización",
+  "titulo": "Motor paso a paso con Arduino",
+  "sigla": "PWM",
+  "resumen": "Control de un motor paso a paso con pulsadores y finales de carrera.",
+  "estado": "Proyecto inicial (2022-2023)",
+  "autoria": "Proyecto personal.",
+  "tecnologias": [
+    "Arduino UNO",
+    "C++"
+  ],
+  "problema": "Mover un motor paso a paso en los dos sentidos y leer los límites de su recorrido.",
+  "trabajo": [
+    "Lectura de pulsadores y finales de carrera.",
+    "Salidas de dirección y pulsos.",
+    "Esquema de conexión incluido en el repositorio."
+  ],
+  "enlaces": [
+    [
+      "Ver código y conexión",
+      "https://github.com/NicoSgandurra/StepByStepMotorControlWithArduinoUNO"
+    ]
+  ]
+}

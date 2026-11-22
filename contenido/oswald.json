@@ -1,0 +1,34 @@
+{
+  "orden": 10,
+  "area": "Ingeniería mecánica y térmica",
+  "titulo": "Triángulo de Oswald",
+  "sigla": "CO2",
+  "imagen": "oswald.jpg",
+  "pie": "Composición del combustible, datos Orsat y diagrama.",
+  "resumen": "Herramienta web para analizar una combustión con el diagrama de Oswald.",
+  "estado": "Publicado",
+  "autoria": "Pablo Rubio y Nicolas Sgandurra.",
+  "tecnologias": [
+    "HTML",
+    "JavaScript",
+    "Canvas"
+  ],
+  "problema": "El diagrama de Oswald relaciona la composición de los gases de escape con la calidad de una combustión, pero dibujarlo a mano es lento.",
+  "trabajo": [
+    "Desarrollo en equipo del cálculo a partir del combustible y los datos Orsat.",
+    "Representación del diagrama, con exportación e interfaz en español e inglés."
+  ],
+  "limites": [
+    "Es una herramienta didáctica, sin validación contra ensayos."
+  ],
+  "enlaces": [
+    [
+      "Abrir la herramienta",
+      "https://nicosgandurra.github.io/SimCircuitosElectricos/M%C3%A1quinas%20T%C3%A9rmicas/oswald.html"
+    ],
+    [
+      "Ver el código",
+      "https://github.com/NicoSgandurra/Oswald"
+    ]
+  ]
+}

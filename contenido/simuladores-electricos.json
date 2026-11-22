@@ -1,0 +1,36 @@
+{
+  "orden": 20,
+  "area": "Sistemas eléctricos",
+  "titulo": "Simuladores de circuitos eléctricos",
+  "sigla": "V I R",
+  "imagen": "simuladores.jpg",
+  "pie": "Simulador de caída de tensión por tramos.",
+  "resumen": "Simuladores y material de estudio que se usan desde el navegador.",
+  "estado": "Publicado",
+  "autoria": "Proyecto personal, con asistencia de IA para programar.",
+  "tecnologias": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "problema": "Muchos temas de circuitos se entienden mejor cuando se puede cambiar un valor y ver qué pasa.",
+  "trabajo": [
+    "Implementación y revisión técnica de las ecuaciones.",
+    "Simuladores de factor de potencia, estrella-triángulo, caída de tensión por tramos y motores paso a paso.",
+    "Material de teoría sobre teoremas de redes, sistemas trifásicos y resonancia."
+  ],
+  "limites": [
+    "Son herramientas didácticas y no reemplazan un software de estudios eléctricos.",
+    "La caída de tensión usa la resistencia del conductor. No es un flujo de carga."
+  ],
+  "enlaces": [
+    [
+      "Abrir los simuladores",
+      "https://nicosgandurra.github.io/SimCircuitosElectricos/"
+    ],
+    [
+      "Ver el código",
+      "https://github.com/NicoSgandurra/SimCircuitosElectricos"
+    ]
+  ]
+}

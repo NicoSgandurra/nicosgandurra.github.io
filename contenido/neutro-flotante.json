@@ -1,0 +1,52 @@
+{
+  "orden": 10,
+  "area": "Sistemas eléctricos",
+  "titulo": "Simulador de neutro flotante",
+  "sigla": "N",
+  "imagen": "neutro-flotante.jpg",
+  "pie": "Cargas de 10, 20 y 40 ohm con el neutro desconectado.",
+  "resumen": "Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.",
+  "estado": "Publicado",
+  "autoria": "Proyecto personal, con asistencia de IA para programar.",
+  "tecnologias": [
+    "JavaScript",
+    "Teorema de Millman"
+  ],
+  "problema": "En una instalación trifásica desequilibrada, un neutro cortado sobretensiona unas fases y deja otras con tensión baja.",
+  "trabajo": [
+    "Cálculo del desplazamiento del neutro con admitancias complejas.",
+    "Diagrama fasorial que responde a la magnitud y el ángulo de cada carga.",
+    "Comparación con el teorema de Millman en tres casos desequilibrados."
+  ],
+  "resultados": [
+    [
+      "Tensión en R (10 ohm)",
+      "144,0 V"
+    ],
+    [
+      "Tensión en T (20 ohm)",
+      "249,5 V"
+    ],
+    [
+      "Tensión en S (40 ohm)",
+      "288,0 V"
+    ],
+    [
+      "Desplazamiento del neutro",
+      "83,2 V"
+    ]
+  ],
+  "limites": [
+    "Considera una fuente ideal de 220 V por fase y cargas de impedancia constante."
+  ],
+  "enlaces": [
+    [
+      "Probar el simulador",
+      "https://nicosgandurra.github.io/SimCircuitosElectricos/Circuitos%20El%C3%A9ctricos%20II/NeutroFlotante.html"
+    ],
+    [
+      "Ver el código",
+      "https://github.com/NicoSgandurra/SimCircuitosElectricos"
+    ]
+  ]
+}

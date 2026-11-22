@@ -1,0 +1,28 @@
+{
+  "orden": 20,
+  "area": "Software y automatización",
+  "titulo": "PCScanner",
+  "sigla": "PS",
+  "resumen": "Relevamiento de hardware para el servicio técnico.",
+  "estado": "Publicado",
+  "autoria": "Proyecto personal.",
+  "tecnologias": [
+    "PowerShell",
+    "BAT",
+    "HTML"
+  ],
+  "problema": "Para diagnosticar o presupuestar una computadora hace falta saber qué tiene, y el cliente no siempre lo sabe.",
+  "trabajo": [
+    "Consulta del sistema, memoria, almacenamiento y otros componentes con CIM/WMI.",
+    "Armado de un resumen listo para enviar."
+  ],
+  "limites": [
+    "Algunos datos dependen del hardware y de los permisos del equipo."
+  ],
+  "enlaces": [
+    [
+      "Ver el código",
+      "https://github.com/NicoSgandurra/PCScanner-TecNito"
+    ]
+  ]
+}
