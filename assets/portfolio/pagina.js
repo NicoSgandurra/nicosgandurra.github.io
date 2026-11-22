@@ -1,9 +1,12 @@
 (function () {
   'use strict';
 
-  /* ---------- Barra: transparente sobre la portada, sólida al bajar */
+  document.documentElement.classList.remove('sin-js');
+  var mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+
+  /* ---------- Barra: transparente arriba, con fondo al bajar */
   var barra = document.querySelector('.nav');
-  function alBajar() { barra.classList.toggle('solida', window.scrollY > 40); }
+  function alBajar() { barra.classList.toggle('solida', window.scrollY > 20); }
   window.addEventListener('scroll', alBajar, { passive: true });
   alBajar();
 
@@ -21,6 +24,125 @@
       if (el.getBoundingClientRect().top < window.innerHeight) return;
       el.classList.add('espera');
       observador.observe(el);
+    });
+  }
+
+  /* ---------- Reflejo que sigue al mouse en las tarjetas */
+  document.addEventListener('pointermove', function (ev) {
+    if (ev.pointerType !== 'mouse') return;
+    var t = ev.target.closest && ev.target.closest('.tarjeta');
+    if (!t) return;
+    var r = t.getBoundingClientRect();
+    t.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+    t.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+  }, { passive: true });
+
+  /* ---------- Copiar el correo */
+  var aviso = null;
+  function avisar(texto) {
+    if (aviso) aviso.remove();
+    aviso = document.createElement('p');
+    aviso.className = 'copiado';
+    aviso.setAttribute('role', 'status');
+    aviso.textContent = texto;
+    document.body.appendChild(aviso);
+    var este = aviso;
+    setTimeout(function () { este.remove(); }, 1800);
+  }
+  function copiar(texto) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(texto).then(function () { avisar('Correo copiado'); }, function () { avisar(texto); });
+    } else {
+      avisar(texto);
+    }
+  }
+  document.querySelectorAll('[data-copiar]').forEach(function (b) {
+    b.hidden = false;
+    b.addEventListener('click', function () {
+      copiar(b.dataset.copiar);
+      if (paleta && paleta.open) paleta.close();
+    });
+  });
+
+  /* ---------- Paleta de comandos */
+  var paleta = document.getElementById('paleta');
+  if (paleta && typeof paleta.showModal === 'function') {
+    var texto = document.getElementById('paleta-texto');
+    var opciones = Array.prototype.slice.call(paleta.querySelectorAll('[role="option"]'));
+    var grupos = Array.prototype.slice.call(paleta.querySelectorAll('.paleta-grupo'));
+    var vacia = paleta.querySelector('.paleta-vacia');
+    var activa = -1;
+    var plano = function (s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); };
+
+    document.querySelectorAll('[data-atajo]').forEach(function (k) { k.textContent = mac ? '⌘ K' : 'Ctrl K'; });
+
+    var visibles = function () { return opciones.filter(function (o) { return !o.hidden; }); };
+
+    function marcar(i) {
+      var lista = visibles();
+      opciones.forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+      if (!lista.length) { activa = -1; texto.removeAttribute('aria-activedescendant'); return; }
+      activa = (i + lista.length) % lista.length;
+      var o = lista[activa];
+      o.setAttribute('aria-selected', 'true');
+      texto.setAttribute('aria-activedescendant', o.id);
+      o.scrollIntoView({ block: 'nearest' });
+    }
+
+    function filtrar() {
+      var q = plano(texto.value.trim()).split(/\s+/).filter(Boolean);
+      opciones.forEach(function (o) {
+        var clave = plano(o.dataset.clave);
+        o.hidden = !q.every(function (p) { return clave.indexOf(p) >= 0; });
+      });
+      /* Un grupo se ve si tiene alguna opción visible antes del grupo siguiente */
+      grupos.forEach(function (gr) {
+        var hay = false;
+        for (var n = gr.nextElementSibling; n && !n.classList.contains('paleta-grupo'); n = n.nextElementSibling) {
+          if (!n.hidden) { hay = true; break; }
+        }
+        gr.hidden = !hay;
+      });
+      vacia.hidden = visibles().length > 0;
+      marcar(0);
+    }
+
+    function abrir() {
+      if (paleta.open) return;
+      texto.value = '';
+      filtrar();
+      paleta.showModal();
+      texto.focus();
+    }
+
+    function elegir(o) {
+      var destino = o && o.firstElementChild;
+      if (destino) destino.click();
+    }
+
+    document.querySelectorAll('[data-paleta]').forEach(function (b) { b.addEventListener('click', abrir); });
+    document.addEventListener('keydown', function (ev) {
+      if ((ev.ctrlKey || ev.metaKey) && !ev.altKey && ev.key.toLowerCase() === 'k') {
+        ev.preventDefault();
+        if (paleta.open) paleta.close(); else abrir();
+      }
+    });
+    texto.addEventListener('input', filtrar);
+    texto.addEventListener('keydown', function (ev) {
+      if (ev.key === 'ArrowDown') { ev.preventDefault(); marcar(activa + 1); }
+      else if (ev.key === 'ArrowUp') { ev.preventDefault(); marcar(activa - 1); }
+      else if (ev.key === 'Enter') { ev.preventDefault(); elegir(visibles()[activa]); }
+    });
+    opciones.forEach(function (o) {
+      o.addEventListener('mousemove', function () {
+        var i = visibles().indexOf(o);
+        if (i !== activa) marcar(i);
+      });
+    });
+    paleta.addEventListener('click', function (ev) {
+      if (ev.target === paleta) { paleta.close(); return; }
+      var enlace = ev.target.closest('a');
+      if (enlace) paleta.close();
     });
   }
 
