@@ -2,7 +2,7 @@
 
     python build.py
 
-contenido/*.json   fichas públicas      -> index.html y proyectos/
+contenido/*.json   fichas públicas      -> index.html, proyectos/ y portfolio/
 borradores/*.json  fichas sin permiso   -> solo vista-previa/ (ambas carpetas ignoradas por Git)
 
 Para publicar un borrador: mover su .json a contenido/ y su imagen de
@@ -12,6 +12,8 @@ import html
 import json
 import shutil
 from pathlib import Path
+
+import portfolio
 
 RAIZ = Path(__file__).resolve().parent
 SITIO = "Nicolas Sgandurra"
@@ -144,9 +146,12 @@ def main():
         if d.get("imagen"):
             assert (RAIZ / "assets" / "img" / d["imagen"]).exists(), f"falta la imagen de {d['slug']}"
     generar(RAIZ, publicas)
+    portfolio.generar(RAIZ, publicas)
     if borradores:
         previa = RAIZ / "vista-previa"
-        generar(previa, sorted(publicas + borradores, key=lambda d: d["orden"]), True)
+        todas = sorted(publicas + borradores, key=lambda d: d["orden"])
+        generar(previa, todas, True)
+        portfolio.generar(previa, todas, True)
         shutil.copytree(RAIZ / "assets", previa / "assets", dirs_exist_ok=True)
         if (RAIZ / "borradores" / "img").exists():
             shutil.copytree(RAIZ / "borradores" / "img", previa / "assets" / "img", dirs_exist_ok=True)

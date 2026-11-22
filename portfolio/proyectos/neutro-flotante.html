@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de neutro flotante | Nicolas Sgandurra</title>
+<meta name="description" content="Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.">
+<meta name="theme-color" content="#06120f">
+<meta property="og:title" content="Simulador de neutro flotante | Nicolas Sgandurra">
+<meta property="og:description" content="Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="../../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
+<link rel="stylesheet" href="../../assets/portfolio/portfolio.css">
+<script src="../../assets/portfolio/pagina.js" defer></script>
+</head>
+<body class="interior">
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="nav">
+  <a class="firma" href="../index.html">Nicolas<span> Sgandurra</span></a>
+  <nav aria-label="Principal"><ul>
+    <li class="opcional"><a href="../index.html#sobre-mi">Sobre mí</a></li>
+    <li><a href="../index.html#trabajo">Trabajo</a></li>
+    <li><a href="../index.html#trayectoria">Trayectoria</a></li>
+    <li><a href="../index.html#contacto">Contacto</a></li>
+  </ul></nav>
+</header>
+<main id="contenido">
+<header class="cabecera-ficha">
+  <a class="volver" href="../index.html#trabajo">Volver a los proyectos</a>
+  <h1>Simulador de neutro flotante</h1>
+  <p class="bajada">Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.</p>
+  
+</header>
+<article class="bloque claro cuerpo-ficha">
+  <aside><dl><dt>Estado</dt><dd>Publicado</dd><dt>Autoría</dt><dd>Proyecto personal, con asistencia de IA para programar.</dd><dt>Herramientas</dt><dd>JavaScript, Teorema de Millman</dd></dl></aside>
+  <div><figure><img src="../../assets/img/neutro-flotante.jpg" alt="Cargas de 10, 20 y 40 ohm con el neutro desconectado."><figcaption>Cargas de 10, 20 y 40 ohm con el neutro desconectado.</figcaption></figure><h2>Problema</h2><p>En una instalación trifásica desequilibrada, un neutro cortado sobretensiona unas fases y deja otras con tensión baja.</p><h2>Qué hice</h2><ul><li>Cálculo del desplazamiento del neutro con admitancias complejas.</li><li>Diagrama fasorial que responde a la magnitud y el ángulo de cada carga.</li><li>Comparación con el teorema de Millman en tres casos desequilibrados.</li></ul><h2>Resultados</h2><table><tr><th scope="row">Tensión en R (10 ohm)</th><td>144,0 V</td></tr><tr><th scope="row">Tensión en T (20 ohm)</th><td>249,5 V</td></tr><tr><th scope="row">Tensión en S (40 ohm)</th><td>288,0 V</td></tr><tr><th scope="row">Desplazamiento del neutro</th><td>83,2 V</td></tr></table><h2>Límites</h2><ul><li>Considera una fuente ideal de 220 V por fase y cargas de impedancia constante.</li></ul><div class="botones"><a class="boton" href="https://nicosgandurra.github.io/SimCircuitosElectricos/Circuitos%20El%C3%A9ctricos%20II/NeutroFlotante.html">Probar el simulador</a><a class="boton" href="https://github.com/NicoSgandurra/SimCircuitosElectricos">Ver el código</a></div></div>
+</article>
+</main>
+<footer class="pie"><span>Nicolas Leonel Sgandurra</span><a href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a></footer>
+</body>
+</html>
