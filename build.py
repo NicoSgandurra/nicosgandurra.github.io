@@ -2,7 +2,7 @@
 
     python build.py
 
-contenido/*.json   fichas públicas      -> index.html, proyectos/ y portfolio/
+contenido/*.json   fichas públicas      -> portfolio en / y proyectos/, catálogo en catalogo/
 borradores/*.json  fichas sin permiso   -> solo vista-previa/ (ambas carpetas ignoradas por Git)
 
 Para publicar un borrador: mover su .json a contenido/ y su imagen de
@@ -68,9 +68,9 @@ def pagina(titulo, descripcion, cuerpo, base="", vista_previa=False):
 """
 
 
-def tarjeta(d):
+def tarjeta(d, base):
     if d.get("imagen"):
-        vista = f'<img src="assets/img/{E(d["imagen"])}" alt="" loading="lazy">'
+        vista = f'<img src="{base}assets/img/{E(d["imagen"])}" alt="" loading="lazy">'
     else:
         vista = f'<span class="sigla" aria-hidden="true">{E(d["sigla"])}</span>'
     marca = '<span class="borrador">Borrador</span>' if d["borrador"] else ""
@@ -89,17 +89,18 @@ def portada(fichas, vista_previa):
     for area in AREAS:
         items = [d for d in fichas if d["area"] == area]
         if items:
-            tarjetas = "\n".join(map(tarjeta, items))
+            tarjetas = "\n".join(tarjeta(d, "../") for d in items)
             grupos.append(f'<section>\n  <h2>{area}</h2>\n  <div class="grilla">\n{tarjetas}\n  </div>\n</section>')
     cuerpo = """<section class="intro">
   <h1>Proyectos de ingeniería</h1>
   <p>Soy técnico electricista, docente de Circuitos Eléctricos y estudiante avanzado de Ingeniería
-  Electromecánica en la UTN San Rafael. Cada proyecto tiene una ficha con el problema, lo que hice y sus límites.</p>
+  Electromecánica en la UTN San Rafael. Cada proyecto tiene una ficha con el problema, lo que hice y sus límites.
+  <a href="../index.html">Volver al inicio</a>.</p>
 </section>
 """ + "\n".join(grupos)
     return pagina(f"{SITIO} | Proyectos de ingeniería",
                   "Proyectos de ingeniería eléctrica, simulación y software de Nicolas Sgandurra.",
-                  cuerpo, "", vista_previa)
+                  cuerpo, "../", vista_previa)
 
 
 def ficha(d, vista_previa):
@@ -113,7 +114,7 @@ def ficha(d, vista_previa):
         p.append(f"<div><dt>{k}</dt><dd>{E(v)}</dd></div>")
     p.append("</dl>")
     if d.get("imagen"):
-        p.append(f'<figure><img src="../assets/img/{E(d["imagen"])}" alt="{E(d["pie"])}">'
+        p.append(f'<figure><img src="../../assets/img/{E(d["imagen"])}" alt="{E(d["pie"])}">'
                  f"<figcaption>{E(d['pie'])}</figcaption></figure>")
     p += ["<h2>Problema</h2>", f"<p>{E(d['problema'])}</p>", "<h2>Qué hice</h2>",
           "<ul>" + "".join(f"<li>{E(x)}</li>" for x in d["trabajo"]) + "</ul>"]
@@ -125,10 +126,11 @@ def ficha(d, vista_previa):
     if d.get("enlaces"):
         p.append('<p class="acciones">' + "".join(f'<a href="{E(u)}">{E(t)}</a>' for t, u in d["enlaces"]) + "</p>")
     p.append("</article>")
-    return pagina(f"{d['titulo']} | {SITIO}", d["resumen"], "\n".join(p), "../", vista_previa)
+    return pagina(f"{d['titulo']} | {SITIO}", d["resumen"], "\n".join(p), "../../", vista_previa)
 
 
 def generar(destino, fichas, vista_previa=False):
+    destino = destino / "catalogo"
     carpeta = destino / "proyectos"
     if carpeta.exists():
         for viejo in carpeta.glob("*.html"):
@@ -149,6 +151,8 @@ def main():
     portfolio.generar(RAIZ, publicas)
     if borradores:
         previa = RAIZ / "vista-previa"
+        if previa.exists():
+            shutil.rmtree(previa)
         todas = sorted(publicas + borradores, key=lambda d: d["orden"])
         generar(previa, todas, True)
         portfolio.generar(previa, todas, True)

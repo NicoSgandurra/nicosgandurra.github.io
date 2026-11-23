@@ -1,4 +1,4 @@
-"""Versión portfolio personal de la web (portfolio/).
+"""Portfolio personal: la página principal de la web (index.html y proyectos/).
 
 La llama build.py con las mismas fichas de contenido/ y borradores/.
 Foto opcional: assets/img/foto.jpg. Si no está, se usa un monograma.
@@ -133,7 +133,7 @@ def paleta(fichas, inicio, proyectos, base):
         ("@", "Copiar correo", "Acción", "copiar", CORREO),
         ("in", "LinkedIn", "Enlace", LINKEDIN, ""),
         ("gh", "GitHub", "Enlace", GITHUB, "código repositorios"),
-        ("≡", "Catálogo de fichas", "Enlace", f"{base}index.html", "lista todos"),
+        ("≡", "Catálogo de fichas", "Enlace", f"{base}catalogo/index.html", "lista todos"),
     ]))
     filas, n = [], 0
     for titulo, items in grupos:
@@ -438,11 +438,11 @@ def ficha(d, base, fichas, vista_previa):
 
 
 def generar(destino, fichas, vista_previa=False):
-    salida = destino / "portfolio"
+    salida = destino
     proyectos = salida / "proyectos"
     proyectos.mkdir(parents=True, exist_ok=True)
     for viejo in proyectos.glob("*.html"):
         viejo.unlink()
-    (salida / "index.html").write_text(portada(fichas, "../", vista_previa), encoding="utf-8")
+    (salida / "index.html").write_text(portada(fichas, "", vista_previa), encoding="utf-8")
     for d in fichas:
-        (proyectos / f"{d['slug']}.html").write_text(ficha(d, "../../", fichas, vista_previa), encoding="utf-8")
+        (proyectos / f"{d['slug']}.html").write_text(ficha(d, "../", fichas, vista_previa), encoding="utf-8")

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de neutro flotante | Nicolas Sgandurra</title>
+<meta name="description" content="Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.">
+
+<link rel="icon" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/estilo.css">
+<script src="../../assets/tema.js" defer></script>
+</head>
+<body>
+
+<header class="barra">
+  <a class="marca" href="../../index.html">Nicolas <strong>Sgandurra</strong></a>
+  <nav>
+    <a href="https://github.com/NicoSgandurra">GitHub</a>
+    <a href="https://www.linkedin.com/in/nicosgandurra">LinkedIn</a>
+    <button id="tema" type="button">Modo oscuro</button>
+  </nav>
+</header>
+<main>
+<a class="volver" href="../index.html">Todos los proyectos</a>
+<article class="ficha">
+<h1>Simulador de neutro flotante</h1>
+<p class="bajada">Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.</p>
+<dl class="datos">
+<div><dt>Estado</dt><dd>Publicado</dd></div>
+<div><dt>Autoría</dt><dd>Proyecto personal, con asistencia de IA para programar.</dd></div>
+<div><dt>Herramientas</dt><dd>JavaScript, Teorema de Millman</dd></div>
+</dl>
+<figure><img src="../../assets/img/neutro-flotante.jpg" alt="Cargas de 10, 20 y 40 ohm con el neutro desconectado."><figcaption>Cargas de 10, 20 y 40 ohm con el neutro desconectado.</figcaption></figure>
+<h2>Problema</h2>
+<p>En una instalación trifásica desequilibrada, un neutro cortado sobretensiona unas fases y deja otras con tensión baja.</p>
+<h2>Qué hice</h2>
+<ul><li>Cálculo del desplazamiento del neutro con admitancias complejas.</li><li>Diagrama fasorial que responde a la magnitud y el ángulo de cada carga.</li><li>Comparación con el teorema de Millman en tres casos desequilibrados.</li></ul>
+<h2>Resultados</h2>
+<table><tr><th scope="row">Tensión en R (10 ohm)</th><td>144,0 V</td></tr><tr><th scope="row">Tensión en T (20 ohm)</th><td>249,5 V</td></tr><tr><th scope="row">Tensión en S (40 ohm)</th><td>288,0 V</td></tr><tr><th scope="row">Desplazamiento del neutro</th><td>83,2 V</td></tr></table>
+<h2>Límites</h2>
+<ul><li>Considera una fuente ideal de 220 V por fase y cargas de impedancia constante.</li></ul>
+<p class="acciones"><a href="https://nicosgandurra.github.io/SimCircuitosElectricos/Circuitos%20El%C3%A9ctricos%20II/NeutroFlotante.html">Probar el simulador</a><a href="https://github.com/NicoSgandurra/SimCircuitosElectricos">Ver el código</a></p>
+</article>
+</main>
+<footer>
+  <span>San Rafael, Mendoza, Argentina</span>
+  <a href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a>
+</footer>
+</body>
+</html>

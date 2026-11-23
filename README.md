@@ -4,8 +4,8 @@ Web de proyectos: https://nicosgandurra.github.io/
 
 Hay dos versiones, generadas con las mismas fichas:
 
-- `/`: catálogo de proyectos.
-- `/portfolio/`: portfolio personal, con portada interactiva. Los textos están en `portfolio.py`.
+- `/`: portfolio personal, con portada interactiva. Los textos están en `portfolio.py`.
+- `/catalogo/`: catálogo con todas las fichas agrupadas por área.
 
 La foto es opcional: guardarla como `assets/img/foto.jpg` y regenerar.
 

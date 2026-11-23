@@ -1,50 +1,72 @@
 <!doctype html>
-<html lang="es-AR">
+<html lang="es-AR" class="sin-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simulador de neutro flotante | Nicolas Sgandurra</title>
 <meta name="description" content="Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.">
+<meta name="theme-color" content="#08090a">
+<meta property="og:title" content="Simulador de neutro flotante | Nicolas Sgandurra">
+<meta property="og:description" content="Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.">
+<meta property="og:type" content="website">
 
 <link rel="icon" href="../assets/favicon.svg">
-<link rel="stylesheet" href="../assets/estilo.css">
-<script src="../assets/tema.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="../assets/portfolio/portfolio.css">
+<script src="../assets/portfolio/pagina.js" defer></script>
 </head>
-<body>
+<body class="interior">
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<header class="barra">
-  <a class="marca" href="../index.html">Nicolas <strong>Sgandurra</strong></a>
-  <nav>
-    <a href="https://github.com/NicoSgandurra">GitHub</a>
-    <a href="https://www.linkedin.com/in/nicosgandurra">LinkedIn</a>
-    <button id="tema" type="button">Modo oscuro</button>
-  </nav>
+<header class="nav">
+  <a class="firma" href="../index.html"><img src="../assets/favicon.svg" alt=""><span>Nicolas Sgandurra</span></a>
+  <nav aria-label="Principal"><ul>
+    <li class="opcional"><a href="../index.html#sobre-mi">Sobre mí</a></li>
+    <li><a href="../index.html#trabajo">Proyectos</a></li>
+    <li class="opcional"><a href="../index.html#trayectoria">Trayectoria</a></li>
+    <li><a href="../index.html#contacto">Contacto</a></li>
+  </ul></nav>
+  <button class="buscar" type="button" data-paleta aria-haspopup="dialog" aria-label="Abrir el buscador del sitio"><span class="solo-escritorio">Buscar</span><span class="solo-movil">Menú</span><kbd data-atajo>Ctrl K</kbd></button>
 </header>
-<main>
-<a class="volver" href="../index.html">Todos los proyectos</a>
-<article class="ficha">
-<h1>Simulador de neutro flotante</h1>
-<p class="bajada">Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.</p>
-<dl class="datos">
-<div><dt>Estado</dt><dd>Publicado</dd></div>
-<div><dt>Autoría</dt><dd>Proyecto personal, con asistencia de IA para programar.</dd></div>
-<div><dt>Herramientas</dt><dd>JavaScript, Teorema de Millman</dd></div>
-</dl>
-<figure><img src="../assets/img/neutro-flotante.jpg" alt="Cargas de 10, 20 y 40 ohm con el neutro desconectado."><figcaption>Cargas de 10, 20 y 40 ohm con el neutro desconectado.</figcaption></figure>
-<h2>Problema</h2>
-<p>En una instalación trifásica desequilibrada, un neutro cortado sobretensiona unas fases y deja otras con tensión baja.</p>
-<h2>Qué hice</h2>
-<ul><li>Cálculo del desplazamiento del neutro con admitancias complejas.</li><li>Diagrama fasorial que responde a la magnitud y el ángulo de cada carga.</li><li>Comparación con el teorema de Millman en tres casos desequilibrados.</li></ul>
-<h2>Resultados</h2>
-<table><tr><th scope="row">Tensión en R (10 ohm)</th><td>144,0 V</td></tr><tr><th scope="row">Tensión en T (20 ohm)</th><td>249,5 V</td></tr><tr><th scope="row">Tensión en S (40 ohm)</th><td>288,0 V</td></tr><tr><th scope="row">Desplazamiento del neutro</th><td>83,2 V</td></tr></table>
-<h2>Límites</h2>
-<ul><li>Considera una fuente ideal de 220 V por fase y cargas de impedancia constante.</li></ul>
-<p class="acciones"><a href="https://nicosgandurra.github.io/SimCircuitosElectricos/Circuitos%20El%C3%A9ctricos%20II/NeutroFlotante.html">Probar el simulador</a><a href="https://github.com/NicoSgandurra/SimCircuitosElectricos">Ver el código</a></p>
+<main id="contenido">
+<header class="cabecera-ficha">
+  <a class="volver" href="../index.html#trabajo">Volver a los proyectos</a>
+  <p class="area">Sistemas eléctricos</p>
+  <h1>Simulador de neutro flotante</h1>
+  <p class="bajada">Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.</p>
+  
+</header>
+<article class="cuerpo-ficha">
+  <dl class="tarjeta datos"><div><dt>Estado</dt><dd>Publicado</dd></div><div><dt>Autoría</dt><dd>Proyecto personal, con asistencia de IA para programar.</dd></div><div><dt>Herramientas</dt><dd>JavaScript, Teorema de Millman</dd></div></dl><figure class="tarjeta"><img src="../assets/img/neutro-flotante.jpg" alt="Cargas de 10, 20 y 40 ohm con el neutro desconectado."><figcaption>Cargas de 10, 20 y 40 ohm con el neutro desconectado.</figcaption></figure><h2>Problema</h2><p>En una instalación trifásica desequilibrada, un neutro cortado sobretensiona unas fases y deja otras con tensión baja.</p><h2>Qué hice</h2><ul><li>Cálculo del desplazamiento del neutro con admitancias complejas.</li><li>Diagrama fasorial que responde a la magnitud y el ángulo de cada carga.</li><li>Comparación con el teorema de Millman en tres casos desequilibrados.</li></ul><h2>Resultados</h2><table><tr><th scope="row">Tensión en R (10 ohm)</th><td>144,0 V</td></tr><tr><th scope="row">Tensión en T (20 ohm)</th><td>249,5 V</td></tr><tr><th scope="row">Tensión en S (40 ohm)</th><td>288,0 V</td></tr><tr><th scope="row">Desplazamiento del neutro</th><td>83,2 V</td></tr></table><h2>Límites</h2><ul><li>Considera una fuente ideal de 220 V por fase y cargas de impedancia constante.</li></ul><div class="botones"><a class="boton" href="https://nicosgandurra.github.io/SimCircuitosElectricos/Circuitos%20El%C3%A9ctricos%20II/NeutroFlotante.html">Probar el simulador</a><a class="boton" href="https://github.com/NicoSgandurra/SimCircuitosElectricos">Ver el código</a></div>
 </article>
 </main>
-<footer>
-  <span>San Rafael, Mendoza, Argentina</span>
-  <a href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a>
-</footer>
+<footer class="pie"><span>Nicolas Leonel Sgandurra</span><a href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a></footer>
+<dialog class="paleta" id="paleta" aria-label="Buscar en el sitio">
+  <div class="paleta-buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="paleta-texto" type="text" role="combobox" aria-expanded="true" aria-controls="paleta-lista" aria-autocomplete="list" placeholder="Buscar en el sitio" autocomplete="off" spellcheck="false"></div>
+  <ul class="paleta-lista" id="paleta-lista" role="listbox">
+    <li class="paleta-grupo" role="presentation">Ir a</li>
+<li role="option" id="op-1" data-clave="inicio sección "><a href="../index.html#inicio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Inicio</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-2" data-clave="sobre mí sección "><a href="../index.html#sobre-mi" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Sobre mí</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-3" data-clave="proyectos sección "><a href="../index.html#trabajo" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Proyectos</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-4" data-clave="laboratorio sección "><a href="../index.html#laboratorio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Laboratorio</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-5" data-clave="trayectoria sección "><a href="../index.html#trayectoria" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Trayectoria</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-6" data-clave="contacto sección "><a href="../index.html#contacto" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Contacto</span><span class="tipo">Sección</span></a></li>
+<li class="paleta-grupo" role="presentation">Proyectos</li>
+<li role="option" id="op-7" data-clave="motor paso a paso con arduino software software y automatización arduino uno c++"><a href="motor-paso-a-paso.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Motor paso a paso con Arduino</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-8" data-clave="simulador de neutro flotante sistemas sistemas eléctricos javascript teorema de millman"><a href="neutro-flotante.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simulador de neutro flotante</span><span class="tipo">Sistemas</span></a></li>
+<li role="option" id="op-9" data-clave="triángulo de oswald ingeniería ingeniería mecánica y térmica html javascript canvas"><a href="oswald.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Triángulo de Oswald</span><span class="tipo">Ingeniería</span></a></li>
+<li role="option" id="op-10" data-clave="pcscanner software software y automatización powershell bat html"><a href="pcscanner.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">PCScanner</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-11" data-clave="simuladores de circuitos eléctricos sistemas sistemas eléctricos html css javascript"><a href="simuladores-electricos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simuladores de circuitos eléctricos</span><span class="tipo">Sistemas</span></a></li>
+<li class="paleta-grupo" role="presentation">Enlaces</li>
+<li role="option" id="op-12" data-clave="copiar correo acción nico.sgandurra@gmail.com"><button type="button" data-copiar="nico.sgandurra@gmail.com" tabindex="-1"><span class="glifo" aria-hidden="true">@</span><span class="nombre">Copiar correo</span><span class="tipo">Acción</span></button></li>
+<li role="option" id="op-13" data-clave="linkedin enlace "><a href="https://www.linkedin.com/in/nicosgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">in</span><span class="nombre">LinkedIn</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-14" data-clave="github enlace código repositorios"><a href="https://github.com/NicoSgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">gh</span><span class="nombre">GitHub</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-15" data-clave="catálogo de fichas enlace lista todos"><a href="../catalogo/index.html" tabindex="-1"><span class="glifo" aria-hidden="true">≡</span><span class="nombre">Catálogo de fichas</span><span class="tipo">Enlace</span></a></li>
+  </ul>
+  <p class="paleta-vacia" hidden>Sin resultados</p>
+  <div class="paleta-pie"><span><kbd>↑</kbd><kbd>↓</kbd> moverse</span><span><kbd>Enter</kbd> abrir</span><span><kbd>Esc</kbd> cerrar</span></div>
+</dialog>
 </body>
 </html>

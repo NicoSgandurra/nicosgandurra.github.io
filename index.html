@@ -1,90 +1,225 @@
 <!doctype html>
-<html lang="es-AR">
+<html lang="es-AR" class="sin-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nicolas Sgandurra | Proyectos de ingeniería</title>
-<meta name="description" content="Proyectos de ingeniería eléctrica, simulación y software de Nicolas Sgandurra.">
+<title>Nicolas Sgandurra | Ingeniería eléctrica y programación</title>
+<meta name="description" content="Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Proyectos de electricidad, simulación y software.">
+<meta name="theme-color" content="#08090a">
+<meta property="og:title" content="Nicolas Sgandurra | Ingeniería eléctrica y programación">
+<meta property="og:description" content="Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Proyectos de electricidad, simulación y software.">
+<meta property="og:type" content="website">
 
 <link rel="icon" href="assets/favicon.svg">
-<link rel="stylesheet" href="assets/estilo.css">
-<script src="assets/tema.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="assets/portfolio/portfolio.css">
+<script src="assets/portfolio/pagina.js" defer></script>
+<script src="assets/portfolio/linea.js" defer></script>
 </head>
-<body>
+<body class="">
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<header class="barra">
-  <a class="marca" href="index.html">Nicolas <strong>Sgandurra</strong></a>
-  <nav>
-    <a href="https://github.com/NicoSgandurra">GitHub</a>
-    <a href="https://www.linkedin.com/in/nicosgandurra">LinkedIn</a>
-    <button id="tema" type="button">Modo oscuro</button>
-  </nav>
+<header class="nav">
+  <a class="firma" href="#inicio"><img src="assets/favicon.svg" alt=""><span>Nicolas Sgandurra</span></a>
+  <nav aria-label="Principal"><ul>
+    <li class="opcional"><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#trabajo">Proyectos</a></li>
+    <li class="opcional"><a href="#trayectoria">Trayectoria</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul></nav>
+  <button class="buscar" type="button" data-paleta aria-haspopup="dialog" aria-label="Abrir el buscador del sitio"><span class="solo-escritorio">Buscar</span><span class="solo-movil">Menú</span><kbd data-atajo>Ctrl K</kbd></button>
 </header>
-<main>
-<section class="intro">
-  <h1>Proyectos de ingeniería</h1>
-  <p>Soy técnico electricista, docente de Circuitos Eléctricos y estudiante avanzado de Ingeniería
-  Electromecánica en la UTN San Rafael. Cada proyecto tiene una ficha con el problema, lo que hice y sus límites.</p>
-</section>
-<section>
-  <h2>Sistemas eléctricos</h2>
-  <div class="grilla">
-    <a class="tarjeta" href="proyectos/neutro-flotante.html">
-      <div class="miniatura"><img src="assets/img/neutro-flotante.jpg" alt="" loading="lazy"></div>
-      <div class="texto">
-        <h3>Simulador de neutro flotante</h3>
-        <p>Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.</p>
-        <p class="tec">JavaScript, Teorema de Millman</p>
+<section class="portada" id="inicio">
+  <p class="estado"><i aria-hidden="true"></i>Disponible desde comienzos de 2027</p>
+  <h1>Nicolas Sgandurra</h1>
+  <p class="lema">Estudio la electricidad, la enseño y la programo. Técnico electricista y estudiante avanzado de Ingeniería Electromecánica en la UTN San Rafael.</p>
+  <div class="botones">
+    <a class="boton lleno" href="#trabajo">Ver proyectos</a>
+    <a class="boton" href="#contacto">Escribime</a>
+  </div>
+  <div class="tarjeta ventana medidor aparece">
+    <div class="ventana-barra"><div class="puntos" aria-hidden="true"><i></i><i></i><i></i></div><span>Capacidad de una línea según el viento</span><button id="pausa" type="button">Pausar</button></div>
+    <div class="medidor-cuerpo">
+      <div class="lienzo"><canvas id="paisaje" aria-hidden="true"></canvas></div>
+      <div class="panel">
+        <label for="viento">Viento perpendicular <span id="v-viento">4,0 m/s</span></label>
+        <input id="viento" type="range" min="0" max="15" step="0.5" value="4">
+        <dl class="lecturas">
+          <div><dt>Corriente admisible</dt><dd id="v-corriente">800 A</dd></div>
+          <div><dt>Temperatura con 400 A</dt><dd id="v-temp">38 °C</dd></div>
+        </dl>
+        <p class="supuestos">Balance térmico de un cobre de 120 mm²: 70 °C de máxima, 25 °C de ambiente y pleno sol. Con mouse alcanza con moverlo sobre el dibujo.</p>
       </div>
-    </a>
-    <a class="tarjeta" href="proyectos/simuladores-electricos.html">
-      <div class="miniatura"><img src="assets/img/simuladores.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<main id="contenido">
+<section class="bloque" id="sobre-mi">
+  <div class="sobre">
+    <div class="aparece">
+      <div class="icono"><svg viewBox="0 0 76 76" aria-hidden="true"><text x="38" y="47" text-anchor="middle" fill="#ededef" font-size="27" font-weight="600" letter-spacing="-1.5" font-family="Inter, Segoe UI, sans-serif">NS</text><circle cx="57" cy="22" r="3.5" fill="#4ade9b"/></svg></div>
+      <p class="etiqueta">Sobre mí</p>
+      <h2>Hola, soy Nico.</h2>
+      <p>Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN.</p>
+      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador. Y si un cálculo hay que repetirlo miles de veces, lo programo. También hago software a medida, sentado con quien lo va a usar para entender cómo trabaja.</p>
+    </div>
+    <dl class="tarjeta ficha-personal aparece">
+      <div><dt>Dónde estoy</dt><dd>San Rafael, Mendoza, Argentina</dd></div>
+      <div><dt>Disponibilidad</dt><dd>Desde comienzos de 2027, full time</dd></div>
+      <div><dt>Estudios</dt><dd>Ingeniería Electromecánica, UTN San Rafael. Graduación prevista en 2027</dd></div>
+      <div><dt>Docencia</dt><dd>Circuitos Eléctricos 1 y 2, desde 2021</dd></div>
+      <div><dt>Idiomas</dt><dd>Español nativo, inglés intermedio</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="bloque" id="trabajo">
+  <p class="etiqueta">Proyectos</p>
+  <h2>Trabajo seleccionado</h2>
+  <p class="entrada">Cada proyecto cuenta el problema, qué hice y hasta dónde llega.</p>
+  <div class="bento">
+    <a class="tarjeta proyecto ancho aparece" href="proyectos/simuladores-electricos.html">
+      <div class="marco"><img src="assets/img/simuladores.jpg" alt="" loading="lazy"></div>
       <div class="texto">
+        <span class="area">Sistemas eléctricos</span>
         <h3>Simuladores de circuitos eléctricos</h3>
         <p>Simuladores y material de estudio que se usan desde el navegador.</p>
-        <p class="tec">HTML, CSS, JavaScript</p>
+        <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        <span class="ver">Ver el proyecto</span>
       </div>
     </a>
-  </div>
-</section>
-<section>
-  <h2>Ingeniería mecánica y térmica</h2>
-  <div class="grilla">
-    <a class="tarjeta" href="proyectos/oswald.html">
-      <div class="miniatura"><img src="assets/img/oswald.jpg" alt="" loading="lazy"></div>
+    <a class="tarjeta proyecto ancho invertido aparece" href="proyectos/oswald.html">
+      <div class="marco"><img src="assets/img/oswald.jpg" alt="" loading="lazy"></div>
       <div class="texto">
+        <span class="area">Ingeniería mecánica y térmica</span>
         <h3>Triángulo de Oswald</h3>
         <p>Herramienta web para analizar una combustión con el diagrama de Oswald.</p>
-        <p class="tec">HTML, JavaScript, Canvas</p>
+        <ul class="chips"><li>HTML</li><li>JavaScript</li><li>Canvas</li></ul>
+        <span class="ver">Ver el proyecto</span>
+      </div>
+    </a>
+  </div>
+  <div class="otros">
+    <a class="tarjeta proyecto aparece" href="proyectos/neutro-flotante.html">
+      <div class="marco"><svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="640" height="400" fill="#0d0e10"/><circle cx="320.0" cy="200.0" r="50" stroke="#2a2c31" fill="none" stroke-width="1"/><circle cx="320.0" cy="200.0" r="100" stroke="#2a2c31" fill="none" stroke-width="1"/><circle cx="320.0" cy="200.0" r="150" stroke="#2a2c31" fill="none" stroke-width="1"/><polyline points="470.0,200.0 245.0,70.1 245.0,329.9 470.0,200.0" fill="none" stroke="#3d4046" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 6"/><polyline points="377.0,184.0 470.0,200.0" fill="none" stroke="#ff7a7a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="470.0" cy="200.0" r="6" stroke="none" fill="#ff7a7a" stroke-width="2.0"/><polyline points="377.0,184.0 245.0,70.1" fill="none" stroke="#7cb4ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="245.0" cy="70.1" r="6" stroke="none" fill="#7cb4ff" stroke-width="2.0"/><polyline points="377.0,184.0 245.0,329.9" fill="none" stroke="#4ade9b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="245.0" cy="329.9" r="6" stroke="none" fill="#4ade9b" stroke-width="2.0"/><circle cx="377.0" cy="184.0" r="9" stroke="none" fill="#fbbf24" stroke-width="2.0"/></svg></div>
+      <div class="texto">
+        <span class="area">Sistemas eléctricos</span>
+        <h3>Simulador de neutro flotante</h3>
+        <p>Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.</p>
+      </div>
+    </a>
+    <a class="tarjeta proyecto aparece" href="proyectos/motor-paso-a-paso.html">
+      <div class="marco"><svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="640" height="400" fill="#0d0e10"/><circle cx="320.0" cy="200.0" r="160" stroke="#2a2c31" fill="none" stroke-width="2.0"/><polyline points="424.6,183.1 424.6,216.9" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="435.5,181.4 435.5,218.6" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="446.4,179.6 446.4,220.4" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="457.2,177.9 457.2,222.1" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="468.1,176.1 468.1,223.9" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="405.9,262.1 382.1,285.9" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="414.9,268.5 388.5,294.9" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="423.8,274.9 394.9,303.8" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="432.7,281.4 401.4,312.7" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="441.6,287.8 407.8,321.6" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="336.9,304.6 303.1,304.6" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="338.6,315.5 301.4,315.5" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="340.4,326.4 299.6,326.4" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="342.1,337.2 297.9,337.2" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="343.9,348.1 296.1,348.1" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="257.9,285.9 234.1,262.1" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="251.5,294.9 225.1,268.5" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="245.1,303.8 216.2,274.9" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="238.6,312.7 207.3,281.4" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="232.2,321.6 198.4,287.8" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="215.4,216.9 215.4,183.1" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="204.5,218.6 204.5,181.4" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="193.6,220.4 193.6,179.6" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="182.8,222.1 182.8,177.9" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="171.9,223.9 171.9,176.1" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="234.1,137.9 257.9,114.1" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="225.1,131.5 251.5,105.1" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="216.2,125.1 245.1,96.2" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="207.3,118.6 238.6,87.3" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="198.4,112.2 232.2,78.4" fill="none" stroke="#4ade9b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="303.1,95.4 336.9,95.4" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="301.4,84.5 338.6,84.5" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="299.6,73.6 340.4,73.6" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="297.9,62.8 342.1,62.8" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="296.1,51.9 343.9,51.9" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="382.1,114.1 405.9,137.9" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="388.5,105.1 414.9,131.5" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="394.9,96.2 423.8,125.1" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="401.4,87.3 432.7,118.6" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="407.8,78.4 441.6,112.2" fill="none" stroke="#3d4046" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="386.0,200.0 402.7,214.6 382.0,222.6 392.7,242.0 370.6,242.4 374.0,264.3 353.0,257.2 348.7,278.9 331.5,265.0 320.0,284.0 308.5,265.0 291.3,278.9 287.0,257.2 266.0,264.3 269.4,242.4 247.3,242.0 258.0,222.6 237.3,214.6 254.0,200.0 237.3,185.4 258.0,177.4 247.3,158.0 269.4,157.6 266.0,135.7 287.0,142.8 291.3,121.1 308.5,135.0 320.0,116.0 331.5,135.0 348.7,121.1 353.0,142.8 374.0,135.7 370.6,157.6 392.7,158.0 382.0,177.4 402.7,185.4 386.0,200.0" fill="none" stroke="#d4d5d9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><circle cx="320.0" cy="200.0" r="18" stroke="#d4d5d9" fill="none" stroke-width="1.8"/></svg></div>
+      <div class="texto">
+        <span class="area">Software y automatización</span>
+        <h3>Motor paso a paso con Arduino</h3>
+        <p>Control de un motor paso a paso con pulsadores y finales de carrera.</p>
+      </div>
+    </a>
+    <a class="tarjeta proyecto aparece" href="proyectos/pcscanner.html">
+      <div class="marco"><svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="640" height="400" fill="#0d0e10"/><polyline points="192.0,120.0 192.0,80.0 136.0,48.0 136.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="192.0,280.0 192.0,320.0 136.0,352.0 136.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,136.0 145.0,136.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,136.0 495.0,136.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="145.0" cy="136.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="495.0" cy="136.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="208.0,120.0 208.0,80.0 166.0,56.0 166.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="208.0,280.0 208.0,320.0 166.0,344.0 166.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,152.0 108.0,152.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,152.0 532.0,152.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="108.0" cy="152.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="532.0" cy="152.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="224.0,120.0 224.0,80.0 196.0,64.0 196.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="224.0,280.0 224.0,320.0 196.0,336.0 196.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,168.0 71.0,168.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,168.0 569.0,168.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="71.0" cy="168.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="569.0" cy="168.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="240.0,120.0 240.0,80.0 226.0,72.0 226.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,280.0 240.0,320.0 226.0,328.0 226.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,184.0 114.0,184.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,184.0 526.0,184.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="114.0" cy="184.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="526.0" cy="184.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="256.0,120.0 256.0,80.0 256.0,80.0 256.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="256.0,280.0 256.0,320.0 256.0,320.0 256.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,200.0 77.0,200.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,200.0 563.0,200.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="77.0" cy="200.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="563.0" cy="200.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="272.0,120.0 272.0,80.0 286.0,72.0 286.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="272.0,280.0 272.0,320.0 286.0,328.0 286.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,216.0 120.0,216.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,216.0 520.0,216.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="120.0" cy="216.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="520.0" cy="216.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="288.0,120.0 288.0,80.0 316.0,64.0 316.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="288.0,280.0 288.0,320.0 316.0,336.0 316.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,232.0 83.0,232.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,232.0 557.0,232.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="83.0" cy="232.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="557.0" cy="232.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="304.0,120.0 304.0,80.0 346.0,56.0 346.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="304.0,280.0 304.0,320.0 346.0,344.0 346.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,248.0 126.0,248.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,248.0 514.0,248.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="126.0" cy="248.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="514.0" cy="248.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><polyline points="320.0,120.0 320.0,80.0 376.0,48.0 376.0,0.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="320.0,280.0 320.0,320.0 376.0,352.0 376.0,400.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="240.0,264.0 89.0,264.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><polyline points="400.0,264.0 551.0,264.0" fill="none" stroke="#2a2c31" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" /><circle cx="89.0" cy="264.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><circle cx="551.0" cy="264.0" r="3.5" stroke="none" fill="#3d4046" stroke-width="2.0"/><rect x="240.0" y="120.0" width="160.0" height="160.0" rx="16" fill="#16171a" stroke="#3d4046"/><polyline points="285.0,170.0 315.0,200.0 285.0,230.0" fill="none" stroke="#4ade9b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /><polyline points="327.0,232.0 358.0,232.0" fill="none" stroke="#d4d5d9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+      <div class="texto">
+        <span class="area">Software y automatización</span>
+        <h3>PCScanner</h3>
+        <p>Relevamiento de hardware para el servicio técnico.</p>
       </div>
     </a>
   </div>
 </section>
-<section>
-  <h2>Software y automatización</h2>
-  <div class="grilla">
-    <a class="tarjeta" href="proyectos/motor-paso-a-paso.html">
-      <div class="miniatura"><span class="sigla" aria-hidden="true">PWM</span></div>
-      <div class="texto">
-        <h3>Motor paso a paso con Arduino</h3>
-        <p>Control de un motor paso a paso con pulsadores y finales de carrera.</p>
-        <p class="tec">Arduino UNO, C++</p>
+
+<section class="bloque laboratorio" id="laboratorio">
+  <p class="etiqueta">Laboratorio</p>
+  <h2>¿Qué pasa si se corta el neutro?</h2>
+  <p class="entrada">Es un tema que doy en clase y se entiende mejor jugando. Cambiá las cargas y mirá cómo se corre el neutro: unas fases quedan con tensión de más y otras de menos.</p>
+  <div class="tarjeta ventana aparece">
+    <div class="ventana-barra"><div class="puntos" aria-hidden="true"><i></i><i></i><i></i></div><span>Neutro flotante · teorema de Millman</span><div class="relleno"></div></div>
+    <div class="banco" id="lab-neutro">
+      <div class="fasores-caja"><svg class="fasores" viewBox="-170 -170 340 340" role="img" aria-label="Diagrama fasorial de las tres fases y el punto neutro"><circle cx="0.0" cy="0.0" r="65" stroke="rgba(255,255,255,.09)" fill="none" stroke-width="1"/><circle cx="0.0" cy="0.0" r="130" stroke="rgba(255,255,255,.09)" fill="none" stroke-width="1"/><polyline points="130.0,-0.0 -65.0,-112.6 -65.0,112.6 130.0,-0.0" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 5"/><line id="fasor-r" x1="0" y1="0" x2="130.0" y2="-0.0" stroke="#ff7a7a"/><circle cx="130.0" cy="-0.0" r="4.5" stroke="none" fill="#ff7a7a" stroke-width="2.0"/><text x="152.1" y="5.0" text-anchor="middle">R</text><line id="fasor-t" x1="0" y1="0" x2="-65.0" y2="-112.6" stroke="#7cb4ff"/><circle cx="-65.0" cy="-112.6" r="4.5" stroke="none" fill="#7cb4ff" stroke-width="2.0"/><text x="-76.0" y="-126.7" text-anchor="middle">T</text><line id="fasor-s" x1="0" y1="0" x2="-65.0" y2="112.6" stroke="#4ade9b"/><circle cx="-65.0" cy="112.6" r="4.5" stroke="none" fill="#4ade9b" stroke-width="2.0"/><text x="-76.1" y="136.7" text-anchor="middle">S</text><circle id="punto-n" cx="0" cy="0" r="6.5" fill="#fbbf24"/></svg></div>
+      <div class="controles">
+        <div class="fase" style="--color-fase:#ff7a7a">
+          <label for="carga-r">Fase R, <span id="ohm-r">10 Ω</span></label>
+          <output id="u-r">144,0 V</output>
+          <input id="carga-r" type="range" min="5" max="100" value="10">
+        </div>
+        <div class="fase" style="--color-fase:#7cb4ff">
+          <label for="carga-t">Fase T, <span id="ohm-t">20 Ω</span></label>
+          <output id="u-t">249,5 V</output>
+          <input id="carga-t" type="range" min="5" max="100" value="20">
+        </div>
+        <div class="fase" style="--color-fase:#4ade9b">
+          <label for="carga-s">Fase S, <span id="ohm-s">40 Ω</span></label>
+          <output id="u-s">288,0 V</output>
+          <input id="carga-s" type="range" min="5" max="100" value="40">
+        </div>
+        <label class="interruptor" for="corte"><input id="corte" type="checkbox" checked> Neutro cortado</label>
+        <p class="nota">Desplazamiento del neutro: <output id="u-n">83,2 V</output>. Fuente ideal de 220 V por fase y cargas resistivas.</p>
       </div>
-    </a>
-    <a class="tarjeta" href="proyectos/pcscanner.html">
-      <div class="miniatura"><span class="sigla" aria-hidden="true">PS</span></div>
-      <div class="texto">
-        <h3>PCScanner</h3>
-        <p>Relevamiento de hardware para el servicio técnico.</p>
-        <p class="tec">PowerShell, BAT, HTML</p>
-      </div>
-    </a>
+    </div>
+  </div>
+</section>
+
+<section class="bloque" id="trayectoria">
+  <p class="etiqueta">Trayectoria</p>
+  <h2>El recorrido</h2>
+  <div class="recorrido">
+    <ol class="camino">
+      <li class="aparece"><time>2017</time><div><h3>Tec.Nito</h3><p>Empiezo a trabajar por mi cuenta en reparación de equipos, redes y armado de workstations. Lo sigo haciendo.</p></div></li>
+      <li class="aparece"><time>2020</time><div><h3>Técnico Electricista</h3><p>Escuela 4-124 Reynaldo Merín.</p></div></li>
+      <li class="aparece"><time>2021</time><div><h3>Ingeniería Electromecánica y docencia</h3><p>Entro a la UTN San Rafael y, en octubre, empiezo a dar Circuitos Eléctricos 1 y 2 en la escuela donde me recibí.</p></div></li>
+      <li class="aparece"><time>2022</time><div><h3>Tecnicatura Universitaria en Programación</h3><p>Cursada completa entre 2022 y 2024. Equivalencia pendiente de acreditar.</p></div></li>
+      <li class="aparece"><time>2026</time><div><h3>Sistemas de potencia y software a medida</h3><p>Estudio preliminar de capacidad dinámica de una línea de 132 kV y desarrollo de Nexxo, un sistema de gestión que ya funciona en paralelo con el anterior. Termino de cursar la carrera.</p></div></li>
+      <li class="aparece"><time>2027</time><div><h3>Lo que sigue</h3><p>Recibirme de ingeniero y trabajar en proyectos eléctricos.</p></div></li>
+    </ol>
+    <div class="herramientas aparece">
+      <div class="tarjeta"><h3>Ingeniería</h3><ul class="chips"><li>Mathcad</li><li>AutoCAD</li><li>Autodesk Inventor</li><li>Excel</li><li>ETAP (inicial)</li></ul></div>
+      <div class="tarjeta"><h3>Programación</h3><ul class="chips"><li>Python</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>FastAPI</li><li>PostgreSQL</li></ul></div>
+      <div class="tarjeta"><h3>Control de versiones</h3><ul class="chips"><li>Git</li><li>GitHub</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque contacto" id="contacto">
+  <div class="tarjeta llamado aparece">
+    <h2>¿Trabajamos juntos?</h2>
+    <p>Escribime por correo o encontrame en LinkedIn y GitHub.</p>
+    <div class="botones">
+      <a class="boton lleno correo" href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a>
+      <button class="boton" type="button" data-copiar="nico.sgandurra@gmail.com" hidden>Copiar</button>
+      <a class="boton" href="https://www.linkedin.com/in/nicosgandurra">LinkedIn</a>
+      <a class="boton" href="https://github.com/NicoSgandurra">GitHub</a>
+    </div>
   </div>
 </section>
 </main>
-<footer>
-  <span>San Rafael, Mendoza, Argentina</span>
-  <a href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a>
-</footer>
+
+<footer class="pie"><span>Nicolas Leonel Sgandurra</span><span>San Rafael, Mendoza, Argentina</span></footer>
+<dialog class="paleta" id="paleta" aria-label="Buscar en el sitio">
+  <div class="paleta-buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="paleta-texto" type="text" role="combobox" aria-expanded="true" aria-controls="paleta-lista" aria-autocomplete="list" placeholder="Buscar en el sitio" autocomplete="off" spellcheck="false"></div>
+  <ul class="paleta-lista" id="paleta-lista" role="listbox">
+    <li class="paleta-grupo" role="presentation">Ir a</li>
+<li role="option" id="op-1" data-clave="inicio sección "><a href="#inicio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Inicio</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-2" data-clave="sobre mí sección "><a href="#sobre-mi" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Sobre mí</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-3" data-clave="proyectos sección "><a href="#trabajo" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Proyectos</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-4" data-clave="laboratorio sección "><a href="#laboratorio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Laboratorio</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-5" data-clave="trayectoria sección "><a href="#trayectoria" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Trayectoria</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-6" data-clave="contacto sección "><a href="#contacto" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Contacto</span><span class="tipo">Sección</span></a></li>
+<li class="paleta-grupo" role="presentation">Proyectos</li>
+<li role="option" id="op-7" data-clave="motor paso a paso con arduino software software y automatización arduino uno c++"><a href="proyectos/motor-paso-a-paso.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Motor paso a paso con Arduino</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-8" data-clave="simulador de neutro flotante sistemas sistemas eléctricos javascript teorema de millman"><a href="proyectos/neutro-flotante.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simulador de neutro flotante</span><span class="tipo">Sistemas</span></a></li>
+<li role="option" id="op-9" data-clave="triángulo de oswald ingeniería ingeniería mecánica y térmica html javascript canvas"><a href="proyectos/oswald.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Triángulo de Oswald</span><span class="tipo">Ingeniería</span></a></li>
+<li role="option" id="op-10" data-clave="pcscanner software software y automatización powershell bat html"><a href="proyectos/pcscanner.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">PCScanner</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-11" data-clave="simuladores de circuitos eléctricos sistemas sistemas eléctricos html css javascript"><a href="proyectos/simuladores-electricos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simuladores de circuitos eléctricos</span><span class="tipo">Sistemas</span></a></li>
+<li class="paleta-grupo" role="presentation">Enlaces</li>
+<li role="option" id="op-12" data-clave="copiar correo acción nico.sgandurra@gmail.com"><button type="button" data-copiar="nico.sgandurra@gmail.com" tabindex="-1"><span class="glifo" aria-hidden="true">@</span><span class="nombre">Copiar correo</span><span class="tipo">Acción</span></button></li>
+<li role="option" id="op-13" data-clave="linkedin enlace "><a href="https://www.linkedin.com/in/nicosgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">in</span><span class="nombre">LinkedIn</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-14" data-clave="github enlace código repositorios"><a href="https://github.com/NicoSgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">gh</span><span class="nombre">GitHub</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-15" data-clave="catálogo de fichas enlace lista todos"><a href="catalogo/index.html" tabindex="-1"><span class="glifo" aria-hidden="true">≡</span><span class="nombre">Catálogo de fichas</span><span class="tipo">Enlace</span></a></li>
+  </ul>
+  <p class="paleta-vacia" hidden>Sin resultados</p>
+  <div class="paleta-pie"><span><kbd>↑</kbd><kbd>↓</kbd> moverse</span><span><kbd>Enter</kbd> abrir</span><span><kbd>Esc</kbd> cerrar</span></div>
+</dialog>
 </body>
 </html>
