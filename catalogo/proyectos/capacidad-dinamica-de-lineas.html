@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capacidad dinámica de una línea aérea | Nicolas Sgandurra</title>
+<meta name="description" content="Estudio preliminar de cuánta corriente admite una línea existente según el clima de cada hora.">
+
+<link rel="icon" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/estilo.css">
+<script src="../../assets/tema.js" defer></script>
+</head>
+<body>
+
+<header class="barra">
+  <a class="marca" href="../../index.html">Nicolas <strong>Sgandurra</strong></a>
+  <nav>
+    <a href="https://github.com/NicoSgandurra">GitHub</a>
+    <a href="https://www.linkedin.com/in/nicosgandurra">LinkedIn</a>
+    <button id="tema" type="button">Modo oscuro</button>
+  </nav>
+</header>
+<main>
+<a class="volver" href="../index.html">Todos los proyectos</a>
+<article class="ficha">
+<h1>Capacidad dinámica de una línea aérea</h1>
+<p class="bajada">Estudio preliminar de cuánta corriente admite una línea existente según el clima de cada hora.</p>
+<dl class="datos">
+<div><dt>Estado</dt><dd>Estudio preliminar (octubre a noviembre de 2026)</dd></div>
+<div><dt>Autoría</dt><dd>Proyecto individual.</dd></div>
+<div><dt>Herramientas</dt><dd>Python, NumPy, Matplotlib, ERA5</dd></div>
+</dl>
+<figure><img src="../../assets/img/capacidad-dinamica-duracion.jpg" alt="Curva de duración de la capacidad del tramo más desfavorable, 1995 a 2025."><figcaption>Curva de duración de la capacidad del tramo más desfavorable, 1995 a 2025.</figcaption></figure>
+<h2>Problema</h2>
+<p>Una línea de 132 kV tiene declarada una capacidad fija de 400 A, calculada para condiciones desfavorables. La corriente que admite el conductor cambia con el viento, el sol y la temperatura, así que buena parte del tiempo podría llevar más.</p>
+<h2>Qué hice</h2>
+<ul><li>División de la traza en 69 tramos y balance térmico hora por hora con 31 años de clima.</li><li>Revisión de los equipos en serie y del alcance de las protecciones de distancia.</li><li>Propuesta de ubicación de sensores en los tramos críticos.</li></ul>
+<h2>Resultados</h2>
+<table><tr><th scope="row">Capacidad declarada</th><td>400 A</td></tr><tr><th scope="row">Capacidad térmica mediana del conductor</th><td>725 A</td></tr><tr><th scope="row">Primer límite: transformadores de corriente con sobrecarga</th><td>480 A</td></tr><tr><th scope="row">Horas en que el conductor admite 480 A o más</th><td>96,5 %</td></tr><tr><th scope="row">Ganancia media estimada</th><td>19,6 %</td></tr></table>
+<h2>Límites</h2>
+<ul><li>Falta confirmar el conductor, la sobrecarga de los transformadores de corriente y el arranque de los relés.</li><li>No incluye estudios de red, tensión ni estabilidad.</li><li>No hay mediciones sobre la línea.</li></ul>
+</article>
+</main>
+<footer>
+  <span>San Rafael, Mendoza, Argentina</span>
+  <a href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a>
+</footer>
+</body>
+</html>

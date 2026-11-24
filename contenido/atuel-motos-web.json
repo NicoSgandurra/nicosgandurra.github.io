@@ -1,0 +1,48 @@
+{
+  "orden": 5,
+  "area": "Sitios web",
+  "titulo": "Sitio web de Atuel Motos",
+  "sigla": "AM",
+  "tono": "#f43f5e",
+  "imagen": "atuel-motos-inicio.jpg",
+  "pie": "Inicio del sitio de Atuel Motos.",
+  "resumen": "Catálogo en línea de motos, cascos e indumentaria para un comercio de San Rafael, con simulador de cuotas.",
+  "estado": "Publicado en atuelmotos.com.ar",
+  "autoria": "Desarrollo propio.",
+  "tecnologias": ["Astro", "TypeScript", "Supabase", "Cloudflare Workers"],
+  "problema": "Un comercio de motos de San Rafael necesitaba mostrar su catálogo y sus precios en internet, con la información de gastos y financiación antes de que el cliente llegue al local.",
+  "trabajo": [
+    "Catálogo de motos nuevas y usadas con galería, ficha técnica y desglose de gastos iniciales.",
+    "Catálogo de cascos e indumentaria con una ficha por artículo.",
+    "Simulador de financiación y actualización masiva de precios desde una planilla."
+  ],
+  "limites": [
+    "Los precios y las condiciones se confirman en el local antes de contratar."
+  ],
+  "enlaces": [
+    ["Visitar el sitio", "https://atuelmotos.com.ar/"]
+  ],
+  "presentacion": {
+    "lema": "El catálogo de un local de motos en internet, con precios, gastos y cuotas a la vista.",
+    "intro": "Es el sitio de un comercio de motos, cascos e indumentaria de San Rafael. Muestra las motos nuevas y usadas con su precio y el detalle de los gastos de patentamiento y flete, y un catálogo de equipamiento que se actualiza desde una planilla de precios.",
+    "cifras": [["16", "motos en el catálogo"], ["304", "cascos y prendas"], ["3 a 24", "cuotas en el simulador"]],
+    "funciones": [
+      ["Catálogo de motos", "Cada moto tiene galería de fotos, cilindrada, descripción, precio y una estimación de los gastos iniciales."],
+      ["Simulador de cuotas", "Calcula la financiación en 3 a 24 cuotas fijas para la moto elegida."],
+      ["Cascos e indumentaria", "Cascos, camperas, guantes y otros equipos, cada uno con su ficha y su precio."],
+      ["Precios desde una planilla", "Un script actualiza todos los precios de una vez a partir de una planilla, con vista previa antes de aplicar."],
+      ["Panel de administración", "El comercio carga y edita cascos e indumentaria desde un panel propio, sin tocar el código."],
+      ["Buscadores y opiniones", "Datos estructurados para los buscadores y las opiniones de Google del local en la portada."]
+    ],
+    "galeria": [
+      ["atuel-motos-catalogo.jpg", "Motos destacadas", "Fotos del showroom, estado de cada unidad, precio y el desglose de patentamiento y flete."],
+      ["atuel-motos-financiacion.jpg", "Financiación", "Acceso al simulador de cuotas y aviso de que las condiciones se confirman en el local."]
+    ],
+    "pasos": [
+      ["Alcance", "Definición con el comercio de qué mostrar, cómo presentar los precios y qué condiciones aclarar."],
+      ["Desarrollo", "Sitio en Astro y TypeScript, con la base de datos de productos en Supabase."],
+      ["Publicación", "Despliegue en Cloudflare, con las imágenes optimizadas para que el catálogo cargue rápido."]
+    ],
+    "cierre": "El sitio está publicado y se puede recorrer. Si querés saber cómo está hecho, escribime."
+  }
+}

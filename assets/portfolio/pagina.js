@@ -2,6 +2,7 @@
   'use strict';
 
   document.documentElement.classList.remove('sin-js');
+  document.documentElement.classList.add('js');
   var mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 
   /* ---------- Barra: transparente arriba, con fondo al bajar */
@@ -22,9 +23,68 @@
     }, { threshold: 0, rootMargin: '0px 0px -40px' });
     document.querySelectorAll('.aparece').forEach(function (el) {
       if (el.getBoundingClientRect().top < window.innerHeight) return;
+      /* Escalonado entre hermanos: las tarjetas de una grilla entran una detrás de otra */
+      var hermanos = Array.prototype.filter.call(el.parentNode.children, function (h) { return h.classList.contains('aparece'); });
+      var i = hermanos.indexOf(el);
+      if (hermanos.length > 1 && i > 0) el.style.transitionDelay = Math.min(i, 6) * 70 + 'ms';
       el.classList.add('espera');
       observador.observe(el);
     });
+  }
+
+  /* ---------- Ventanas que se enderezan al bajar (vitrina y portada de cada proyecto) */
+  var inclinables = Array.prototype.slice.call(document.querySelectorAll('.vitrina, [data-inclinar] .marco'));
+  if (!reducido && inclinables.length) {
+    var pendiente = false;
+    var inclinar = function () {
+      pendiente = false;
+      var alto = window.innerHeight;
+      inclinables.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        /* 1 cuando el borde de arriba está abajo de la pantalla, 0 cuando llegó al 45 % */
+        var k = (r.top - alto * 0.45) / (alto * 0.5);
+        el.style.setProperty('--inclinacion', Math.max(0, Math.min(1, k)).toFixed(3));
+      });
+    };
+    window.addEventListener('scroll', function () {
+      if (!pendiente) { pendiente = true; requestAnimationFrame(inclinar); }
+    }, { passive: true });
+    window.addEventListener('resize', inclinar);
+    inclinar();
+  }
+
+  /* ---------- Cifras que cuentan hasta su valor la primera vez que se ven */
+  var cifras = Array.prototype.slice.call(document.querySelectorAll('[data-cifra]'));
+  if (!reducido && cifras.length && 'IntersectionObserver' in window) {
+    var contar = function (el) {
+      var texto = el.textContent;
+      var m = texto.match(/^([\d.]+)(,(\d+))?(.*)$/);
+      if (!m || /^(19|20)\d\d$/.test(texto.trim())) return;
+      var final = parseFloat(m[1].replace(/\./g, '') + (m[3] ? '.' + m[3] : ''));
+      var decimales = m[3] ? m[3].length : 0;
+      var miles = m[1].indexOf('.') >= 0;
+      var formato = function (v) {
+        var s = v.toFixed(decimales).split('.');
+        if (miles) s[0] = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        return s[0] + (decimales ? ',' + s[1] : '') + m[4];
+      };
+      var inicio = null;
+      var paso = function (t) {
+        if (inicio === null) inicio = t;
+        var x = Math.min(1, (t - inicio) / 1400);
+        el.textContent = formato(final * (1 - Math.pow(1 - x, 3)));
+        if (x < 1) requestAnimationFrame(paso); else el.textContent = texto;
+      };
+      requestAnimationFrame(paso);
+    };
+    var vigiaCifras = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        vigiaCifras.unobserve(e.target);
+        contar(e.target);
+      });
+    }, { threshold: 0.6 });
+    cifras.forEach(function (c) { vigiaCifras.observe(c); });
   }
 
   /* ---------- Reflejo que sigue al mouse en las tarjetas */

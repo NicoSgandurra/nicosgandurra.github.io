@@ -1,0 +1,47 @@
+{
+  "orden": 50,
+  "area": "Software y automatización",
+  "titulo": "MiBilletera",
+  "sigla": "$",
+  "tono": "#f87192",
+  "imagen": "mibilletera-resumen.jpg",
+  "pie": "Resumen general, con datos de ejemplo.",
+  "resumen": "Aplicación web de finanzas personales, con movimientos, tarjetas en cuotas, gastos fijos y ahorro.",
+  "estado": "Proyecto personal",
+  "autoria": "Proyecto personal, con asistencia de IA para programar.",
+  "tecnologias": ["JavaScript", "Tailwind CSS", "Chart.js", "Firebase"],
+  "problema": "Llevar las finanzas personales con tarjetas de crédito obliga a seguir cuotas, fechas de cierre y vencimientos, y una planilla simple no lo resuelve.",
+  "trabajo": [
+    "Resumen con saldo, ingresos, egresos, vencimientos y evolución del saldo.",
+    "Tarjetas de crédito con límite disponible, cuotas y cálculo de la fecha de cierre.",
+    "Gastos fijos, metas de ahorro con interés compuesto e inversiones, sincronizados con Firebase."
+  ],
+  "limites": [
+    "Necesita una cuenta de Google para sincronizar los datos."
+  ],
+  "presentacion": {
+    "lema": "Ingresos, gastos, tarjetas y ahorros en una sola aplicación, en la computadora o en el celular.",
+    "intro": "MiBilletera es una aplicación web de finanzas personales. Tomé como referencia la app Cashew y le di la estética de cuaderno de Cuackdernos. Guarda los datos en la nube con Firebase y se puede instalar en el celular.",
+    "cifras": [["6", "secciones, del resumen a las inversiones"], ["2", "temas, claro y oscuro"], ["PWA", "se instala como app en el celular"]],
+    "funciones": [
+      ["Resumen", "Saldo total, ingresos y egresos del mes, próximos vencimientos y la evolución del saldo."],
+      ["Movimientos", "Lista por fecha con filtros por mes y año. En el celular, un movimiento se borra deslizándolo."],
+      ["Tarjetas de crédito", "Límite disponible, monto a pagar y compras en cuotas. Según la fecha de cierre, ubica la primera cuota en el vencimiento que corresponde."],
+      ["Gastos fijos", "Suscripciones y pagos mensuales con su día de cobro, para saber qué falta pagar."],
+      ["Ahorro e inversiones", "Metas de ahorro con interés compuesto y seguimiento de inversiones."],
+      ["Flujo del dinero", "Un gráfico en cascada muestra cómo se reparte el ingreso entre gastos fijos, variables y ahorro."]
+    ],
+    "galeria": [
+      ["mibilletera-movimientos.jpg", "Movimientos", "Ingresos, egresos y ajustes agrupados por día."],
+      ["mibilletera-cuotas.jpg", "Cuotas", "La aplicación calcula qué cuota toca según el cierre de la tarjeta y permite adelantarlas."],
+      ["mibilletera-programados.jpg", "Gastos fijos", "Cada suscripción muestra cuántos días faltan para el cobro."],
+      ["mibilletera-ahorro.jpg", "Metas de ahorro", "El avance de cada meta, con el interés que genera."]
+    ],
+    "pasos": [
+      ["Diseño", "Estética de cuaderno, con fondo punteado, tarjetas redondeadas y una paleta pastel en claro y oscuro."],
+      ["Datos", "Firebase guarda los movimientos en la nube y el navegador los mantiene en caché para abrir rápido."],
+      ["Celular", "En la computadora hay una barra lateral. En el celular, la navegación pasa abajo y un botón flotante carga un gasto."]
+    ],
+    "cierre": "Las imágenes usan datos de ejemplo y el código es privado. Si querés probar la aplicación, escribime."
+  }
+}

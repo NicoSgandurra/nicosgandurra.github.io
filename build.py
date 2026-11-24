@@ -17,7 +17,7 @@ import portfolio
 
 RAIZ = Path(__file__).resolve().parent
 SITIO = "Nicolas Sgandurra"
-AREAS = ["Sistemas eléctricos", "Ingeniería mecánica y térmica", "Software y automatización"]
+AREAS = ["Sistemas eléctricos", "Ingeniería mecánica y térmica", "Software y automatización", "Sitios web"]
 E = html.escape
 
 

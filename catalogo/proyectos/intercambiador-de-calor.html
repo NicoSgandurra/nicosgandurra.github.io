@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intercambiador de calor de casco y tubos | Nicolas Sgandurra</title>
+<meta name="description" content="Ocho simuladores en Python para diseñar y revisar un intercambiador metanol-agua.">
+
+<link rel="icon" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../assets/estilo.css">
+<script src="../../assets/tema.js" defer></script>
+</head>
+<body>
+
+<header class="barra">
+  <a class="marca" href="../../index.html">Nicolas <strong>Sgandurra</strong></a>
+  <nav>
+    <a href="https://github.com/NicoSgandurra">GitHub</a>
+    <a href="https://www.linkedin.com/in/nicosgandurra">LinkedIn</a>
+    <button id="tema" type="button">Modo oscuro</button>
+  </nav>
+</header>
+<main>
+<a class="volver" href="../index.html">Todos los proyectos</a>
+<article class="ficha">
+<h1>Intercambiador de calor de casco y tubos</h1>
+<p class="bajada">Ocho simuladores en Python para diseñar y revisar un intercambiador metanol-agua.</p>
+<dl class="datos">
+<div><dt>Estado</dt><dd>Proyecto académico (2026)</dd></div>
+<div><dt>Autoría</dt><dd>Proyecto académico. Usa la biblioteca ht, de Caleb Bell.</dd></div>
+<div><dt>Herramientas</dt><dd>Python, ht, NumPy, SciPy, Matplotlib</dd></div>
+</dl>
+<h2>Problema</h2>
+<p>La memoria de cálculo de un intercambiador se hace una vez y con valores fijos. Cambiar un caudal o la geometría obliga a rehacerla entera.</p>
+<h2>Qué hice</h2>
+<ul><li>Réplica de la memoria de cálculo de 20 páginas: calor intercambiado, DMLT, coeficiente global y caídas de presión.</li><li>Comparación de cuatro métodos para el lado de la carcasa.</li><li>Optimización de geometría, análisis de sensibilidad, análisis económico y Monte Carlo.</li></ul>
+<h2>Resultados</h2>
+<table><tr><th scope="row">Calor intercambiado</th><td>56,3 kW</td></tr><tr><th scope="row">Coeficiente global calculado</th><td>607 W/m²K</td></tr><tr><th scope="row">Margen sobre el adoptado (500 W/m²K)</th><td>21 %</td></tr><tr><th scope="row">Caída de presión en tubos</th><td>10,75 kPa (límite 20 kPa)</td></tr><tr><th scope="row">Caída de presión en carcasa</th><td>0,90 kPa (límite 20 kPa)</td></tr></table>
+<h2>Límites</h2>
+<ul><li>No está validado contra un equipo real.</li><li>Las propiedades de los fluidos salen de tablas interpoladas.</li></ul>
+</article>
+</main>
+<footer>
+  <span>San Rafael, Mendoza, Argentina</span>
+  <a href="mailto:nico.sgandurra@gmail.com">nico.sgandurra@gmail.com</a>
+</footer>
+</body>
+</html>

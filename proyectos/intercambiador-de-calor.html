@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es-AR" class="sin-js">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.replace('sin-js', 'js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intercambiador de calor de casco y tubos | Nicolas Sgandurra</title>
+<meta name="description" content="Ocho simuladores en Python para diseñar y revisar un intercambiador metanol-agua.">
+<meta name="theme-color" content="#08090a">
+<meta property="og:title" content="Intercambiador de calor de casco y tubos | Nicolas Sgandurra">
+<meta property="og:description" content="Ocho simuladores en Python para diseñar y revisar un intercambiador metanol-agua.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="../assets/portfolio/portfolio.css">
+<script src="../assets/portfolio/pagina.js" defer></script>
+</head>
+<body class="interior">
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="nav">
+  <a class="firma" href="../index.html"><img src="../assets/favicon.svg" alt=""><span>Nicolas Sgandurra</span></a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="../index.html#trabajo">Proyectos</a></li>
+    <li class="opcional"><a href="../index.html#sobre-mi">Sobre mí</a></li>
+    <li class="opcional"><a href="../index.html#laboratorio">Laboratorio</a></li>
+    <li class="opcional"><a href="../index.html#trayectoria">Trayectoria</a></li>
+    <li><a href="../index.html#contacto">Contacto</a></li>
+  </ul></nav>
+  <button class="buscar" type="button" data-paleta aria-haspopup="dialog" aria-label="Abrir el buscador del sitio"><span class="solo-escritorio">Buscar</span><span class="solo-movil">Menú</span><kbd data-atajo>Ctrl K</kbd></button>
+</header>
+<main id="contenido" class="pres" style="--tono:#fbbf24">
+<header class="pres-cabeza">
+  <a class="volver" href="../index.html#trabajo">Volver a los proyectos</a>
+  <p class="area"><i></i>Ingeniería mecánica y térmica</p>
+  <h1>Intercambiador de calor de casco y tubos</h1>
+  <p class="pres-lema">La memoria de cálculo de un intercambiador, convertida en herramientas para probar escenarios.</p>
+  
+  <div class="botones">
+    <a class="boton lleno" href="mailto:nico.sgandurra@gmail.com?subject=Intercambiador%20de%20calor%20de%20casco%20y%20tubos">Pedir una demostración</a>
+    <a class="boton" href="#que-hace">Ver qué hace</a>
+  </div>
+</header>
+<figure class="pres-portada" data-inclinar><div class="marco"><svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="640" height="400" fill="#0d0e10"/><rect x="60.0" y="92.0" width="520.0" height="216.0" rx="70" fill="#111214" stroke="#3d4046"/><polyline points="100.0,124.0 540.0,124.0" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="100.0,146.0 540.0,146.0" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="100.0,168.0 540.0,168.0" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="100.0,190.0 540.0,190.0" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="100.0,212.0 540.0,212.0" fill="none" stroke="#7cb4ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="100.0,234.0 540.0,234.0" fill="none" stroke="#7cb4ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="100.0,256.0 540.0,256.0" fill="none" stroke="#7cb4ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="100.0,278.0 540.0,278.0" fill="none" stroke="#7cb4ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><polyline points="170.0,180.0 170.0,300.0" fill="none" stroke="#d4d5d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><polyline points="245.0,100.0 245.0,220.0" fill="none" stroke="#d4d5d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><polyline points="320.0,180.0 320.0,300.0" fill="none" stroke="#d4d5d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><polyline points="395.0,100.0 395.0,220.0" fill="none" stroke="#d4d5d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><polyline points="470.0,180.0 470.0,300.0" fill="none" stroke="#d4d5d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg></div></figure>
+<div class="pres-cuerpo">
+<dl class="pres-cifras"><div class="aparece"><dt>calor intercambiado</dt><dd data-cifra>56,3 kW</dd></div><div class="aparece"><dt>simuladores</dt><dd data-cifra>8</dd></div><div class="aparece"><dt>geometrías evaluadas</dt><dd data-cifra>3.600</dd></div></dl>
+<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Qué es</h2>
+  <div class="aparece"><p class="pres-grande">El punto de partida fue la memoria de cálculo de un intercambiador TEMA BEM de 48 tubos y 4 pasos que enfría metanol con agua. La pasé a Python con la biblioteca ht y la extendí en ocho simuladores independientes. Cada uno responde una pregunta distinta sobre el mismo equipo.</p></div>
+</section>
+<section class="pres-bloque pres-dos">
+  <h2 class="aparece">El problema</h2>
+  <div class="aparece"><p>La memoria de cálculo de un intercambiador se hace una vez y con valores fijos. Cambiar un caudal o la geometría obliga a rehacerla entera.</p></div>
+</section>
+<section class="pres-bloque" id="que-hace">
+  <h2 class="aparece">Qué hace</h2>
+  <div class="pres-funciones"><article class="tarjeta funcion aparece"><span class="funcion-num">01</span><h3>Diseño térmico</h3><p>Rehace la memoria completa: calor, DMLT, coeficiente global, caídas de presión y verificaciones TEMA.</p></article><article class="tarjeta funcion aparece"><span class="funcion-num">02</span><h3>Escenarios</h3><p>Cambia temperaturas, caudales o geometría y recalcula al momento.</p></article><article class="tarjeta funcion aparece"><span class="funcion-num">03</span><h3>Optimización</h3><p>Recorre 3.600 configuraciones y ordena las mejores según un puntaje.</p></article><article class="tarjeta funcion aparece"><span class="funcion-num">04</span><h3>Métodos de carcasa</h3><p>Compara Kern, Bell-Delaware, ESDU 73031 y Zukauskas.</p></article><article class="tarjeta funcion aparece"><span class="funcion-num">05</span><h3>Propiedades</h3><p>Densidad, calor específico, conductividad y viscosidad en función de la temperatura.</p></article><article class="tarjeta funcion aparece"><span class="funcion-num">06</span><h3>Sensibilidad</h3><p>Mueve un parámetro por vez y mide cuánto cambian el calor, el coeficiente global, la caída de presión y la superficie.</p></article><article class="tarjeta funcion aparece"><span class="funcion-num">07</span><h3>Económico</h3><p>Costo del equipo, instalación, operación y mantenimiento, con VAN y repago.</p></article><article class="tarjeta funcion aparece"><span class="funcion-num">08</span><h3>Monte Carlo</h3><p>Propaga la incertidumbre de propiedades y geometría para ver qué tan confiable es el diseño.</p></article></div>
+</section>
+<section class="pres-bloque">
+  <h2 class="aparece">Cómo se ve</h2>
+  <div class="pres-galeria"><figure class="pres-figura aparece"><div class="lamina"><img src="../assets/img/intercambiador-metodos.jpg" alt="Cuatro métodos, cuatro respuestas" loading="lazy"></div><figcaption><h3>Cuatro métodos, cuatro respuestas</h3><p>Para la misma carcasa, el coeficiente global va de menos de 500 W/m²K con Bell-Delaware a casi 1.200 con Zukauskas. La línea punteada es el valor adoptado en la memoria.</p></figcaption></figure><figure class="pres-figura aparece"><div class="lamina"><img src="../assets/img/intercambiador-monte-carlo.jpg" alt="Incertidumbre" loading="lazy"></div><figcaption><h3>Incertidumbre</h3><p>Distribución del calor, el coeficiente global y las caídas de presión cuando varían las propiedades y la geometría.</p></figcaption></figure></div>
+</section>
+<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Cómo lo hice</h2>
+  <div>
+    <ol class="pres-pasos"><li class="aparece"><h3>Réplica</h3><p>Reproducir la memoria original y comparar cada resultado con el de la hoja de cálculo.</p></li><li class="aparece"><h3>Extensión</h3><p>Un simulador por pregunta: qué pasa si cambia un dato, cuál es la mejor geometría, cuánto cuesta y qué tan seguro es el diseño.</p></li><li class="aparece"><h3>Reporte</h3><p>Un script corre todos los simuladores y arma un reporte consolidado, con gráficos y exportación a Excel.</p></li></ol>
+    <div class="pres-tec aparece"><span>Herramientas</span><ul class="chips"><li>Python</li><li>ht</li><li>NumPy</li><li>SciPy</li><li>Matplotlib</li></ul></div>
+  </div>
+</section>
+<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Resultados</h2>
+  <div class="aparece"><table class="pres-tabla"><tr><th scope="row">Calor intercambiado</th><td>56,3 kW</td></tr><tr><th scope="row">Coeficiente global calculado</th><td>607 W/m²K</td></tr><tr><th scope="row">Margen sobre el adoptado (500 W/m²K)</th><td>21 %</td></tr><tr><th scope="row">Caída de presión en tubos</th><td>10,75 kPa (límite 20 kPa)</td></tr><tr><th scope="row">Caída de presión en carcasa</th><td>0,90 kPa (límite 20 kPa)</td></tr></table></div>
+</section>
+<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Estado y límites</h2>
+  <div class="aparece"><p class="pres-estado">Proyecto académico (2026). Proyecto académico. Usa la biblioteca ht, de Caleb Bell.</p>
+  <ul class="pres-limites"><li>No está validado contra un equipo real.</li><li>Las propiedades de los fluidos salen de tablas interpoladas.</li></ul></div>
+</section>
+<section class="tarjeta pres-cierre aparece">
+  <p>El código es privado. Si querés ver los simuladores o los resultados completos, escribime.</p>
+  <div class="botones"><a class="boton lleno" href="mailto:nico.sgandurra@gmail.com?subject=Intercambiador%20de%20calor%20de%20casco%20y%20tubos">Escribime</a><button class="boton" type="button" data-copiar="nico.sgandurra@gmail.com" hidden>Copiar el correo</button></div>
+</section>
+<nav class="pasar" aria-label="Otros proyectos">
+  <a class="tarjeta" href="atuel-motos-web.html"><span>Anterior</span>Sitio web de Atuel Motos</a>
+  <a class="tarjeta siguiente" href="cuackdernos.html"><span>Siguiente</span>Cuackdernos</a>
+</nav>
+</div>
+</main>
+<footer class="pie">
+  <span>© 2026 Nicolas Leonel Sgandurra · San Rafael, Mendoza</span>
+  <nav aria-label="Enlaces del pie"><a href="https://github.com/NicoSgandurra">GitHub</a><a href="https://www.linkedin.com/in/nicosgandurra">LinkedIn</a><a href="../catalogo/index.html">Catálogo</a></nav>
+</footer>
+<dialog class="paleta" id="paleta" aria-label="Buscar en el sitio">
+  <div class="paleta-buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="paleta-texto" type="text" role="combobox" aria-expanded="true" aria-controls="paleta-lista" aria-autocomplete="list" placeholder="Buscar en el sitio" autocomplete="off" spellcheck="false"></div>
+  <ul class="paleta-lista" id="paleta-lista" role="listbox">
+    <li class="paleta-grupo" role="presentation">Ir a</li>
+<li role="option" id="op-1" data-clave="inicio sección "><a href="../index.html#inicio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Inicio</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-2" data-clave="proyectos sección "><a href="../index.html#trabajo" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Proyectos</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-3" data-clave="sobre mí sección "><a href="../index.html#sobre-mi" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Sobre mí</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-4" data-clave="laboratorio sección "><a href="../index.html#laboratorio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Laboratorio</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-5" data-clave="trayectoria sección "><a href="../index.html#trayectoria" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Trayectoria</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-6" data-clave="contacto sección "><a href="../index.html#contacto" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Contacto</span><span class="tipo">Sección</span></a></li>
+<li class="paleta-grupo" role="presentation">Proyectos</li>
+<li role="option" id="op-7" data-clave="nexxo software software y automatización python fastapi postgresql react typescript tauri"><a href="nexxo.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Nexxo</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-8" data-clave="simuladores de circuitos eléctricos sistemas sistemas eléctricos html css javascript"><a href="simuladores-electricos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simuladores de circuitos eléctricos</span><span class="tipo">Sistemas</span></a></li>
+<li role="option" id="op-9" data-clave="sitio web de atuel motos sitios sitios web astro typescript supabase cloudflare workers"><a href="atuel-motos-web.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Sitio web de Atuel Motos</span><span class="tipo">Sitios</span></a></li>
+<li role="option" id="op-10" data-clave="intercambiador de calor de casco y tubos ingeniería ingeniería mecánica y térmica python ht numpy scipy matplotlib"><a href="intercambiador-de-calor.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Intercambiador de calor de casco y tubos</span><span class="tipo">Ingeniería</span></a></li>
+<li role="option" id="op-11" data-clave="cuackdernos sitios sitios web html javascript tailwind css firebase"><a href="cuackdernos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Cuackdernos</span><span class="tipo">Sitios</span></a></li>
+<li role="option" id="op-12" data-clave="mibilletera software software y automatización javascript tailwind css chart.js firebase"><a href="mibilletera.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">MiBilletera</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-13" data-clave="triángulo de oswald ingeniería ingeniería mecánica y térmica html javascript canvas"><a href="oswald.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Triángulo de Oswald</span><span class="tipo">Ingeniería</span></a></li>
+<li role="option" id="op-14" data-clave="capacidad dinámica de una línea aérea sistemas sistemas eléctricos python numpy matplotlib era5"><a href="capacidad-dinamica-de-lineas.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Capacidad dinámica de una línea aérea</span><span class="tipo">Sistemas</span></a></li>
+<li role="option" id="op-15" data-clave="simulador de neutro flotante sistemas sistemas eléctricos javascript teorema de millman"><a href="neutro-flotante.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simulador de neutro flotante</span><span class="tipo">Sistemas</span></a></li>
+<li class="paleta-grupo" role="presentation">Enlaces</li>
+<li role="option" id="op-16" data-clave="copiar correo acción nico.sgandurra@gmail.com"><button type="button" data-copiar="nico.sgandurra@gmail.com" tabindex="-1"><span class="glifo" aria-hidden="true">@</span><span class="nombre">Copiar correo</span><span class="tipo">Acción</span></button></li>
+<li role="option" id="op-17" data-clave="linkedin enlace "><a href="https://www.linkedin.com/in/nicosgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">in</span><span class="nombre">LinkedIn</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-18" data-clave="github enlace código repositorios"><a href="https://github.com/NicoSgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">gh</span><span class="nombre">GitHub</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-19" data-clave="catálogo de fichas enlace lista todos"><a href="../catalogo/index.html" tabindex="-1"><span class="glifo" aria-hidden="true">≡</span><span class="nombre">Catálogo de fichas</span><span class="tipo">Enlace</span></a></li>
+  </ul>
+  <p class="paleta-vacia" hidden>Sin resultados</p>
+  <div class="paleta-pie"><span><kbd>↑</kbd><kbd>↓</kbd> moverse</span><span><kbd>Enter</kbd> abrir</span><span><kbd>Esc</kbd> cerrar</span></div>
+</dialog>
+</body>
+</html>

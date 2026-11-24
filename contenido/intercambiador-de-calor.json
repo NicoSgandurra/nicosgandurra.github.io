@@ -1,0 +1,52 @@
+{
+  "orden": 30,
+  "area": "Ingeniería mecánica y térmica",
+  "titulo": "Intercambiador de calor de casco y tubos",
+  "sigla": "Q",
+  "resumen": "Ocho simuladores en Python para diseñar y revisar un intercambiador metanol-agua.",
+  "estado": "Proyecto académico (2026)",
+  "autoria": "Proyecto académico. Usa la biblioteca ht, de Caleb Bell.",
+  "tecnologias": ["Python", "ht", "NumPy", "SciPy", "Matplotlib"],
+  "problema": "La memoria de cálculo de un intercambiador se hace una vez y con valores fijos. Cambiar un caudal o la geometría obliga a rehacerla entera.",
+  "trabajo": [
+    "Réplica de la memoria de cálculo de 20 páginas: calor intercambiado, DMLT, coeficiente global y caídas de presión.",
+    "Comparación de cuatro métodos para el lado de la carcasa.",
+    "Optimización de geometría, análisis de sensibilidad, análisis económico y Monte Carlo."
+  ],
+  "resultados": [
+    ["Calor intercambiado", "56,3 kW"],
+    ["Coeficiente global calculado", "607 W/m²K"],
+    ["Margen sobre el adoptado (500 W/m²K)", "21 %"],
+    ["Caída de presión en tubos", "10,75 kPa (límite 20 kPa)"],
+    ["Caída de presión en carcasa", "0,90 kPa (límite 20 kPa)"]
+  ],
+  "limites": [
+    "No está validado contra un equipo real.",
+    "Las propiedades de los fluidos salen de tablas interpoladas."
+  ],
+  "presentacion": {
+    "lema": "La memoria de cálculo de un intercambiador, convertida en herramientas para probar escenarios.",
+    "intro": "El punto de partida fue la memoria de cálculo de un intercambiador TEMA BEM de 48 tubos y 4 pasos que enfría metanol con agua. La pasé a Python con la biblioteca ht y la extendí en ocho simuladores independientes. Cada uno responde una pregunta distinta sobre el mismo equipo.",
+    "cifras": [["56,3 kW", "calor intercambiado"], ["8", "simuladores"], ["3.600", "geometrías evaluadas"]],
+    "funciones": [
+      ["Diseño térmico", "Rehace la memoria completa: calor, DMLT, coeficiente global, caídas de presión y verificaciones TEMA."],
+      ["Escenarios", "Cambia temperaturas, caudales o geometría y recalcula al momento."],
+      ["Optimización", "Recorre 3.600 configuraciones y ordena las mejores según un puntaje."],
+      ["Métodos de carcasa", "Compara Kern, Bell-Delaware, ESDU 73031 y Zukauskas."],
+      ["Propiedades", "Densidad, calor específico, conductividad y viscosidad en función de la temperatura."],
+      ["Sensibilidad", "Mueve un parámetro por vez y mide cuánto cambian el calor, el coeficiente global, la caída de presión y la superficie."],
+      ["Económico", "Costo del equipo, instalación, operación y mantenimiento, con VAN y repago."],
+      ["Monte Carlo", "Propaga la incertidumbre de propiedades y geometría para ver qué tan confiable es el diseño."]
+    ],
+    "galeria": [
+      ["intercambiador-metodos.jpg", "Cuatro métodos, cuatro respuestas", "Para la misma carcasa, el coeficiente global va de menos de 500 W/m²K con Bell-Delaware a casi 1.200 con Zukauskas. La línea punteada es el valor adoptado en la memoria."],
+      ["intercambiador-monte-carlo.jpg", "Incertidumbre", "Distribución del calor, el coeficiente global y las caídas de presión cuando varían las propiedades y la geometría."]
+    ],
+    "pasos": [
+      ["Réplica", "Reproducir la memoria original y comparar cada resultado con el de la hoja de cálculo."],
+      ["Extensión", "Un simulador por pregunta: qué pasa si cambia un dato, cuál es la mejor geometría, cuánto cuesta y qué tan seguro es el diseño."],
+      ["Reporte", "Un script corre todos los simuladores y arma un reporte consolidado, con gráficos y exportación a Excel."]
+    ],
+    "cierre": "El código es privado. Si querés ver los simuladores o los resultados completos, escribime."
+  }
+}

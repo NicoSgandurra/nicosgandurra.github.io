@@ -5,6 +5,7 @@ Foto opcional: assets/img/foto.jpg. Si no está, se usa un monograma.
 """
 import html
 import math
+from urllib.parse import quote
 from pathlib import Path
 
 E = html.escape
@@ -14,10 +15,13 @@ GITHUB = "https://github.com/NicoSgandurra"
 LINKEDIN = "https://www.linkedin.com/in/nicosgandurra"
 
 # Orden de la vitrina y de la grilla. Los borradores van siempre al final.
-ORDEN = ["simuladores-electricos", "oswald", "neutro-flotante", "pcscanner", "motor-paso-a-paso", "nexxo"]
-EN_VITRINA = 5
+ORDEN = ["nexxo", "simuladores-electricos", "atuel-motos-web", "intercambiador-de-calor", "cuackdernos",
+         "mibilletera", "oswald", "capacidad-dinamica-de-lineas", "neutro-flotante", "pcscanner", "motor-paso-a-paso"]
+EN_VITRINA = 6
+GRANDES = 4
 ROJO, AZUL, VERDE, AMBAR = "#ff7a7a", "#7cb4ff", "#4ade9b", "#fbbf24"
-TONOS = {"Sistemas eléctricos": VERDE, "Ingeniería mecánica y térmica": AMBAR, "Software y automatización": AZUL}
+TONOS = {"Sistemas eléctricos": VERDE, "Ingeniería mecánica y térmica": AMBAR, "Software y automatización": AZUL,
+         "Sitios web": "#c4a1ff"}
 # Proyectos con un dibujo propio: en las tarjetas chicas se ve mejor que una captura
 ARTES = {"neutro-flotante", "motor-paso-a-paso", "pcscanner", "nexxo", "picocero",
          "rosca-transportadora", "intercambiador-de-calor"}
@@ -135,7 +139,7 @@ def paleta(fichas, inicio, proyectos, base):
     """Ctrl K: secciones, proyectos y enlaces. Sin JS no se abre, pero nada depende de ella."""
     grupos = [("Ir a", [("#", n, "Sección", f"{inicio}{h}", "") for n, h in SECCIONES])]
     grupos.append(("Proyectos", [("◆", d["titulo"], d["area"].split()[0], f"{proyectos}{d['slug']}.html",
-                                  d["area"] + " " + " ".join(d["tecnologias"])) for d in ordenar(fichas)]))
+                                  d["area"] + " " + " ".join(d["tecnologias"])) for d in visibles(fichas)]))
     grupos.append(("Enlaces", [
         ("@", "Copiar correo", "Acción", "copiar", CORREO),
         ("in", "LinkedIn", "Enlace", LINKEDIN, ""),
@@ -174,6 +178,7 @@ def pagina(titulo, descripcion, cuerpo, base, fichas, inicio="", proyectos="proy
 <html lang="es-AR" class="sin-js">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.replace('sin-js', 'js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(titulo)}</title>
 <meta name="description" content="{E(descripcion)}">
@@ -211,7 +216,7 @@ def pagina(titulo, descripcion, cuerpo, base, fichas, inicio="", proyectos="proy
 
 
 def tono(d):
-    return TONOS.get(d["area"], "#b49cff")
+    return d.get("tono") or TONOS.get(d["area"], "#b49cff")
 
 
 def ordenar(fichas):
@@ -221,7 +226,7 @@ def ordenar(fichas):
 
 def captura(d, base, carga="lazy"):
     """Captura dentro de una ventanita, apoyada sobre un fondo del color del área."""
-    clase = ' class="figura"' if d["slug"].startswith("dlr") else ""
+    clase = ' class="figura"' if d.get("figura") else ""
     return ('<div class="captura"><div class="captura-barra" aria-hidden="true"><i></i><i></i><i></i></div>'
             f'<img{clase} src="{base}assets/img/{E(d["imagen"])}" alt="" loading="{carga}"></div>')
 
@@ -291,11 +296,11 @@ def tarjeta_proyecto(d, base, clase):
 
 
 def clases(n):
-    """Dos grandes arriba y el resto de a tres. Las sueltas del final se estiran para no dejar huecos."""
-    c = ["grande"] * min(2, n) + ["chica"] * max(0, n - 2)
+    """Cuatro grandes arriba y el resto de a tres. Las sueltas del final se estiran para no dejar huecos."""
+    c = ["grande"] * min(GRANDES, n) + ["chica"] * max(0, n - GRANDES)
     if n == 1:
         c[0] += " sola"
-    resto = n - 2
+    resto = n - GRANDES
     if resto > 0:
         if resto % 3 == 1:
             c[-1] += " fin-1"
@@ -341,15 +346,14 @@ def laboratorio():
 
 
 def portada(fichas, base, vista_previa):
-    todas = ordenar(fichas)
+    todas = visibles(fichas)
     grilla = "\n".join(tarjeta_proyecto(d, base, c) for d, c in zip(todas, clases(len(todas))))
     return pagina(
         "Nicolas Sgandurra | Proyectos",
         "Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Simuladores y software para ingeniería.",
         f"""<section class="portada" id="inicio">
-  <a class="estado" href="#laboratorio"><span class="estado-marca">Laboratorio</span><span>Probá el simulador<span class="extra"> de neutro flotante</span></span><span class="estado-flecha" aria-hidden="true">→</span></a>
   <h1>Nicolas Sgandurra</h1>
-  <p class="lema">Técnico electricista y docente de Circuitos Eléctricos. Estudio Ingeniería Electromecánica en la UTN San Rafael y programo simuladores y software a medida.</p>
+  <p class="lema">Técnico electricista y docente de Circuitos Eléctricos. Estudio Ingeniería Electromecánica en la UTN San Rafael y programo simuladores, software y sitios web a medida.</p>
   <div class="botones">
     <a class="boton lleno" href="#trabajo">Ver proyectos</a>
     <a class="boton" href="#contacto">Contacto</a>
@@ -406,7 +410,7 @@ def portada(fichas, base, vista_previa):
       <li class="aparece"><time>2020</time><div><h3>Técnico electricista</h3><p>Escuela 4-124 Reynaldo Merín.</p></div></li>
       <li class="aparece"><time>2021</time><div><h3>Ingeniería y docencia</h3><p>Entro a Ingeniería Electromecánica en la UTN San Rafael y empiezo a dar Circuitos Eléctricos 1 y 2 en la escuela donde me recibí.</p></div></li>
       <li class="aparece"><time>2022</time><div><h3>Tecnicatura Universitaria en Programación</h3><p>Cursada completa entre 2022 y 2024.</p></div></li>
-      <li class="aparece"><time>2026</time><div><h3>Software a medida</h3><p>Desarrollo un sistema de gestión para un comercio, que ya funciona en paralelo con el anterior. Termino de cursar la carrera.</p></div></li>
+      <li class="aparece"><time>2026</time><div><h3>Software y sitios a medida</h3><p>Desarrollo un sistema de gestión para un comercio, que ya funciona en paralelo con el anterior, y sitios web para dos emprendimientos de San Rafael. Termino de cursar la carrera.</p></div></li>
     </ol>
     <div class="herramientas aparece">
       <div class="tarjeta"><h3>Ingeniería</h3>{chips(["Mathcad", "AutoCAD", "Autodesk Inventor", "Excel"])}</div>
@@ -441,16 +445,129 @@ def pie(base, inicio=""):
 </footer>"""
 
 
+def visibles(fichas):
+    """Las que van en la portada, la paleta y proyectos/. El resto queda solo en el catálogo."""
+    return [d for d in ordenar(fichas) if d.get("en_portada", True)]
+
+
+def vecinos(d, fichas):
+    lista = visibles(fichas)
+    i = next((k for k, x in enumerate(lista) if x["slug"] == d["slug"]), 0)
+    return lista[i - 1], lista[(i + 1) % len(lista)]
+
+
+def navegacion(d, fichas):
+    antes, despues = vecinos(d, fichas)
+    return f"""<nav class="pasar" aria-label="Otros proyectos">
+  <a class="tarjeta" href="{antes['slug']}.html"><span>Anterior</span>{E(antes['titulo'])}</a>
+  <a class="tarjeta siguiente" href="{despues['slug']}.html"><span>Siguiente</span>{E(despues['titulo'])}</a>
+</nav>"""
+
+
+def lamina(base, img, alt, figura=False):
+    clase = " figura" if figura else ""
+    return f'<div class="lamina{clase}"><img src="{base}assets/img/{E(img)}" alt="{E(alt)}" loading="lazy"></div>'
+
+
+def presentacion(d, base, fichas, vista_previa):
+    """Página de presentación: qué es, qué problema resuelve, qué hace, cómo se ve y cómo se hizo."""
+    p = d["presentacion"]
+    t = tono(d)
+    asunto = quote(d['titulo'])
+    if d.get("enlaces"):
+        principal = "".join(f'<a class="boton{' lleno' if i == 0 else ''}" href="{E(u)}">{E(n)}</a>'
+                            for i, (n, u) in enumerate(d["enlaces"]))
+    else:
+        principal = f'<a class="boton lleno" href="mailto:{CORREO}?subject={asunto}">Pedir una demostración</a>'
+    portada_visual = marco(d, base, carga="eager") if d.get("imagen") else f'<div class="marco">{arte(d["slug"])}</div>'
+    partes = []
+    if p.get("cifras"):
+        celdas = "".join(f'<div class="aparece"><dt>{E(e)}</dt><dd data-cifra>{E(v)}</dd></div>' for v, e in p["cifras"])
+        partes.append(f'<dl class="pres-cifras">{celdas}</dl>')
+    partes.append(f"""<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Qué es</h2>
+  <div class="aparece"><p class="pres-grande">{E(p['intro'])}</p></div>
+</section>
+<section class="pres-bloque pres-dos">
+  <h2 class="aparece">El problema</h2>
+  <div class="aparece"><p>{E(d['problema'])}</p></div>
+</section>""")
+    tarjetas = "".join(f'<article class="tarjeta funcion aparece"><span class="funcion-num">{i:02d}</span>'
+                       f'<h3>{E(a)}</h3><p>{E(b)}</p></article>'
+                       for i, (a, b) in enumerate(p["funciones"], 1))
+    partes.append(f"""<section class="pres-bloque" id="que-hace">
+  <h2 class="aparece">Qué hace</h2>
+  <div class="pres-funciones">{tarjetas}</div>
+</section>""")
+    if p.get("galeria"):
+        figuras = "".join(
+            f'<figure class="pres-figura aparece">{lamina(base, img, tit, d.get("figura"))}'
+            f'<figcaption><h3>{E(tit)}</h3><p>{E(txt)}</p></figcaption></figure>'
+            for img, tit, txt in p["galeria"])
+        partes.append(f"""<section class="pres-bloque">
+  <h2 class="aparece">Cómo se ve</h2>
+  <div class="pres-galeria">{figuras}</div>
+</section>""")
+    pasos = "".join(f'<li class="aparece"><h3>{E(a)}</h3><p>{E(b)}</p></li>' for a, b in p["pasos"])
+    partes.append(f"""<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Cómo lo hice</h2>
+  <div>
+    <ol class="pres-pasos">{pasos}</ol>
+    <div class="pres-tec aparece"><span>Herramientas</span>{chips(d['tecnologias'])}</div>
+  </div>
+</section>""")
+    if d.get("resultados"):
+        filas = "".join(f'<tr><th scope="row">{E(k)}</th><td>{E(v)}</td></tr>' for k, v in d["resultados"])
+        partes.append(f"""<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Resultados</h2>
+  <div class="aparece"><table class="pres-tabla">{filas}</table></div>
+</section>""")
+    if d.get("limites"):
+        partes.append(f"""<section class="pres-bloque pres-dos">
+  <h2 class="aparece">Estado y límites</h2>
+  <div class="aparece"><p class="pres-estado">{E(d['estado'])}. {E(d['autoria'])}</p>
+  <ul class="pres-limites">{''.join(f'<li>{E(x)}</li>' for x in d['limites'])}</ul></div>
+</section>""")
+    aviso = f'<p class="pendiente">Antes de publicar: {E(d["pendiente"])}</p>' if d["borrador"] else ""
+    cuerpo = f"""<main id="contenido" class="pres" style="--tono:{t}">
+<header class="pres-cabeza">
+  <a class="volver" href="../index.html#trabajo">Volver a los proyectos</a>
+  <p class="area"><i></i>{E(d['area'])}</p>
+  <h1>{E(d['titulo'])}</h1>
+  <p class="pres-lema">{E(p['lema'])}</p>
+  {aviso}
+  <div class="botones">
+    {principal}
+    <a class="boton" href="#que-hace">Ver qué hace</a>
+  </div>
+</header>
+<figure class="pres-portada" data-inclinar>{portada_visual}</figure>
+<div class="pres-cuerpo">
+{chr(10).join(partes)}
+<section class="tarjeta pres-cierre aparece">
+  <p>{E(p['cierre'])}</p>
+  <div class="botones"><a class="boton lleno" href="mailto:{CORREO}?subject={asunto}">Escribime</a><button class="boton" type="button" data-copiar="{CORREO}" hidden>Copiar el correo</button></div>
+</section>
+{navegacion(d, fichas)}
+</div>
+</main>
+{pie(base)}"""
+    return pagina(f"{d['titulo']} | Nicolas Sgandurra", d["resumen"], cuerpo, base, fichas,
+                  inicio="../index.html", proyectos="", vista_previa=vista_previa, clase="interior")
+
+
 def ficha(d, base, fichas, vista_previa):
+    if d.get("presentacion"):
+        return presentacion(d, base, fichas, vista_previa)
     datos = [("Estado", d["estado"]), ("Autoría", d["autoria"]), ("Herramientas", ", ".join(d["tecnologias"]))]
     meta = "".join(f"<div><dt>{k}</dt><dd>{E(v)}</dd></div>" for k, v in datos)
-    partes = [f'<dl class="tarjeta datos">{meta}</dl>']
+    partes = [f'<dl class="tarjeta datos aparece">{meta}</dl>']
     if d.get("imagen"):
-        clase = ' class="figura"' if d["slug"].startswith("dlr") else ""
-        partes.append(f'<figure class="tarjeta"><img{clase} src="{base}assets/img/{E(d["imagen"])}" alt="{E(d["pie"])}">'
+        clase = ' class="figura"' if d.get("figura") else ""
+        partes.append(f'<figure class="tarjeta aparece"><img{clase} src="{base}assets/img/{E(d["imagen"])}" alt="{E(d["pie"])}">'
                       f'<figcaption>{E(d["pie"])}</figcaption></figure>')
     else:
-        partes.append(f'<figure class="tarjeta">{arte(d["slug"])}</figure>')
+        partes.append(f'<figure class="tarjeta aparece">{arte(d["slug"])}</figure>')
     partes += ["<h2>Problema</h2>", f"<p>{E(d['problema'])}</p>", "<h2>Qué hice</h2>",
                "<ul>" + "".join(f"<li>{E(x)}</li>" for x in d["trabajo"]) + "</ul>"]
     if d.get("resultados"):
@@ -465,13 +582,14 @@ def ficha(d, base, fichas, vista_previa):
     cuerpo = f"""<main id="contenido">
 <header class="cabecera-ficha">
   <a class="volver" href="../index.html#trabajo">Volver a los proyectos</a>
-  <p class="area">{E(d['area'])}</p>
+  <p class="area"><i style="--tono:{tono(d)}"></i>{E(d['area'])}</p>
   <h1>{E(d['titulo'])}</h1>
   <p class="bajada">{E(d['resumen'])}</p>
   {aviso}
 </header>
 <article class="cuerpo-ficha">
   {''.join(partes)}
+  {navegacion(d, fichas)}
 </article>
 </main>
 {pie(base)}"""
@@ -486,5 +604,5 @@ def generar(destino, fichas, vista_previa=False):
     for viejo in proyectos.glob("*.html"):
         viejo.unlink()
     (salida / "index.html").write_text(portada(fichas, "", vista_previa), encoding="utf-8")
-    for d in fichas:
+    for d in visibles(fichas):
         (proyectos / f"{d['slug']}.html").write_text(ficha(d, "../", fichas, vista_previa), encoding="utf-8")

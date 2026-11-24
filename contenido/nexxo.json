@@ -1,0 +1,110 @@
+{
+  "orden": 1,
+  "area": "Software y automatización",
+  "titulo": "Nexxo",
+  "sigla": "Nx",
+  "tono": "#34c589",
+  "imagen": "nexxo-tablero.jpg",
+  "pie": "Inicio del sistema, con datos de ejemplo.",
+  "resumen": "Sistema de gestión para un comercio de motos y repuestos, con ventas, stock, caja y encargos en un mismo programa.",
+  "estado": "En uso, en paralelo con el sistema anterior",
+  "autoria": "Desarrollo propio.",
+  "tecnologias": [
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "React",
+    "TypeScript",
+    "Tauri"
+  ],
+  "problema": "Un comercio de motos, cascos, indumentaria y repuestos trabajaba con un sistema que no se adaptaba a su mostrador. Había que reemplazarlo sin frenar las ventas del día.",
+  "trabajo": [
+    "Relevamiento con el cliente del trabajo en mostrador, stock, caja y listas de proveedores.",
+    "Módulos de ventas, caja, encargos, catálogo, stock, etiquetas, importación de precios, reportes, permisos y respaldos.",
+    "Aplicación de escritorio para varias computadoras del local conectadas a la misma base de datos."
+  ],
+  "limites": [
+    "La facturación electrónica está preparada en el entorno de pruebas de ARCA y todavía no se usa en producción.",
+    "Las compras a proveedores y la publicación de precios en la web quedaron para una etapa siguiente."
+  ],
+  "presentacion": {
+    "lema": "Ventas, stock, caja y encargos de un comercio, en un mismo programa.",
+    "intro": "Nexxo es un sistema de gestión que hice a medida para un local de motos y repuestos. Antes de programar, relevé con el cliente cómo se vende en el mostrador, cómo se cobra y cómo llegan las listas de precios de los proveedores. Hoy funciona en el local en paralelo con el sistema anterior, mientras se completa el cambio.",
+    "cifras": [
+      [
+        "70.000",
+        "artículos en el catálogo"
+      ],
+      [
+        "10",
+        "módulos, de ventas a respaldos"
+      ],
+      [
+        "2026",
+        "en uso desde este año"
+      ]
+    ],
+    "funciones": [
+      [
+        "Ventas y caja",
+        "Venta con lector de códigos y atajos de teclado, ticket o factura, devoluciones y cierre de caja con el detalle de cada medio de pago."
+      ],
+      [
+        "Catálogo y stock",
+        "Cada artículo tiene precios de lista, contado y cuotas, y stock separado por local y depósito. El sistema avisa cuando algo baja del mínimo."
+      ],
+      [
+        "Listas de proveedores",
+        "Importa las listas de precios que mandan los proveedores y actualiza el catálogo sin cargar artículo por artículo."
+      ],
+      [
+        "Encargos",
+        "Registra lo que encarga cada cliente, la seña y el estado del pedido."
+      ],
+      [
+        "Etiquetas",
+        "Imprime etiquetas con código de barras para la mercadería nueva o con precio cambiado."
+      ],
+      [
+        "Usuarios y reportes",
+        "Cada persona entra con su PIN y sus permisos. Los reportes resumen las ventas y la asistencia del equipo."
+      ]
+    ],
+    "galeria": [
+      [
+        "nexxo-ventas.jpg",
+        "Pantalla de venta",
+        "El buscador acepta nombre, código o lector. El comprobante en curso queda a la derecha, con el total y las cuotas."
+      ],
+      [
+        "nexxo-productos.jpg",
+        "Catálogo",
+        "Filtros por rubro, marca, talle y proveedor, con la ficha del artículo al costado."
+      ],
+      [
+        "nexxo-acceso.jpg",
+        "Acceso con PIN",
+        "Cada persona elige su usuario y entra con un PIN de cuatro dígitos."
+      ]
+    ],
+    "pasos": [
+      [
+        "Relevamiento",
+        "Charlas con el dueño y los vendedores sobre el mostrador, el stock, la caja y las listas de proveedores."
+      ],
+      [
+        "Diseño",
+        "Una identidad propia, con nombre, símbolo y colores, y pantallas pensadas para trabajar con teclado y lector."
+      ],
+      [
+        "Desarrollo",
+        "Servidor en Python con FastAPI y base de datos PostgreSQL. La aplicación de escritorio está hecha en React y TypeScript."
+      ],
+      [
+        "Puesta en marcha",
+        "Convive con el sistema anterior, del que trae el historial, hasta que el cambio esté completo."
+      ]
+    ],
+    "cierre": "Las capturas usan datos de ejemplo y el código es privado. Si querés ver el sistema funcionando, escribime y coordinamos una demostración."
+  }
+}
