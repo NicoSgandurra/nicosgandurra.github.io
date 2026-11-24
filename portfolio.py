@@ -13,15 +13,22 @@ CORREO = "nico.sgandurra@gmail.com"
 GITHUB = "https://github.com/NicoSgandurra"
 LINKEDIN = "https://www.linkedin.com/in/nicosgandurra"
 
-# Los que van en grande, en este orden. El resto va en la grilla de abajo.
-DESTACADOS = ["dlr-linea-132kv", "nexxo", "simuladores-electricos", "oswald"]
+# Orden de la vitrina y de la grilla. Los borradores van siempre al final.
+ORDEN = ["simuladores-electricos", "oswald", "neutro-flotante", "pcscanner", "motor-paso-a-paso", "nexxo"]
+EN_VITRINA = 5
 ROJO, AZUL, VERDE, AMBAR = "#ff7a7a", "#7cb4ff", "#4ade9b", "#fbbf24"
+TONOS = {"Sistemas eléctricos": VERDE, "Ingeniería mecánica y térmica": AMBAR, "Software y automatización": AZUL}
+# Proyectos con un dibujo propio: en las tarjetas chicas se ve mejor que una captura
+ARTES = {"neutro-flotante", "motor-paso-a-paso", "pcscanner", "nexxo", "picocero",
+         "rosca-transportadora", "intercambiador-de-calor"}
 FASES = [("r", "R", ROJO, 10), ("t", "T", AZUL, 20), ("s", "S", VERDE, 40)]
 INICIAL = {"r": "144,0 V", "t": "249,5 V", "s": "288,0 V", "n": "83,2 V"}  # lo que se ve sin JS
 FUENTES = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600"
            "&family=JetBrains+Mono:wght@400;500&display=swap")
-SECCIONES = [("Inicio", "#inicio"), ("Sobre mí", "#sobre-mi"), ("Proyectos", "#trabajo"),
+SECCIONES = [("Inicio", "#inicio"), ("Proyectos", "#trabajo"), ("Sobre mí", "#sobre-mi"),
              ("Laboratorio", "#laboratorio"), ("Trayectoria", "#trayectoria"), ("Contacto", "#contacto")]
+LUPA = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+        '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>')
 
 
 # ---------------------------------------------------------------- Dibujos
@@ -128,7 +135,7 @@ def paleta(fichas, inicio, proyectos, base):
     """Ctrl K: secciones, proyectos y enlaces. Sin JS no se abre, pero nada depende de ella."""
     grupos = [("Ir a", [("#", n, "Sección", f"{inicio}{h}", "") for n, h in SECCIONES])]
     grupos.append(("Proyectos", [("◆", d["titulo"], d["area"].split()[0], f"{proyectos}{d['slug']}.html",
-                                  d["area"] + " " + " ".join(d["tecnologias"])) for d in fichas]))
+                                  d["area"] + " " + " ".join(d["tecnologias"])) for d in ordenar(fichas)]))
     grupos.append(("Enlaces", [
         ("@", "Copiar correo", "Acción", "copiar", CORREO),
         ("in", "LinkedIn", "Enlace", LINKEDIN, ""),
@@ -147,10 +154,8 @@ def paleta(fichas, inicio, proyectos, base):
                 filas.append(f'<li role="option" id="op-{n}" data-clave="{clave}"><button type="button" data-copiar="{CORREO}" tabindex="-1">{dentro}</button></li>')
             else:
                 filas.append(f'<li role="option" id="op-{n}" data-clave="{clave}"><a href="{E(destino)}" tabindex="-1">{dentro}</a></li>')
-    lupa = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
-            '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>')
     return f"""<dialog class="paleta" id="paleta" aria-label="Buscar en el sitio">
-  <div class="paleta-buscar">{lupa}<input id="paleta-texto" type="text" role="combobox" aria-expanded="true" aria-controls="paleta-lista" aria-autocomplete="list" placeholder="Buscar en el sitio" autocomplete="off" spellcheck="false"></div>
+  <div class="paleta-buscar">{LUPA}<input id="paleta-texto" type="text" role="combobox" aria-expanded="true" aria-controls="paleta-lista" aria-autocomplete="list" placeholder="Buscar en el sitio" autocomplete="off" spellcheck="false"></div>
   <ul class="paleta-lista" id="paleta-lista" role="listbox">
     {chr(10).join(filas)}
   </ul>
@@ -190,8 +195,9 @@ def pagina(titulo, descripcion, cuerpo, base, fichas, inicio="", proyectos="proy
 <header class="nav">
   <a class="firma" href="{inicio or '#inicio'}"><img src="{base}assets/favicon.svg" alt=""><span>Nicolas Sgandurra</span></a>
   <nav aria-label="Principal"><ul>
-    <li class="opcional"><a href="{inicio}#sobre-mi">Sobre mí</a></li>
     <li><a href="{inicio}#trabajo">Proyectos</a></li>
+    <li class="opcional"><a href="{inicio}#sobre-mi">Sobre mí</a></li>
+    <li class="opcional"><a href="{inicio}#laboratorio">Laboratorio</a></li>
     <li class="opcional"><a href="{inicio}#trayectoria">Trayectoria</a></li>
     <li><a href="{inicio}#contacto">Contacto</a></li>
   </ul></nav>
@@ -204,12 +210,28 @@ def pagina(titulo, descripcion, cuerpo, base, fichas, inicio="", proyectos="proy
 """
 
 
-def visual(d, base):
-    if not d.get("imagen"):
-        return arte(d["slug"])
-    # Los gráficos no se recortan, las capturas sí
+def tono(d):
+    return TONOS.get(d["area"], "#b49cff")
+
+
+def ordenar(fichas):
+    pos = {s: i for i, s in enumerate(ORDEN)}
+    return sorted(fichas, key=lambda d: (d["borrador"], pos.get(d["slug"], len(ORDEN)), d["orden"], d["titulo"]))
+
+
+def captura(d, base, carga="lazy"):
+    """Captura dentro de una ventanita, apoyada sobre un fondo del color del área."""
     clase = ' class="figura"' if d["slug"].startswith("dlr") else ""
-    return f'<img{clase} src="{base}assets/img/{E(d["imagen"])}" alt="" loading="lazy">'
+    return ('<div class="captura"><div class="captura-barra" aria-hidden="true"><i></i><i></i><i></i></div>'
+            f'<img{clase} src="{base}assets/img/{E(d["imagen"])}" alt="" loading="{carga}"></div>')
+
+
+def marco(d, base, chico=False, carga="lazy"):
+    if d.get("imagen") and not (chico and d["slug"] in ARTES):
+        dentro, clase = captura(d, base, carga), "marco con-captura"
+    else:
+        dentro, clase = arte(d["slug"]), "marco"
+    return f'<div class="{clase}" style="--tono:{tono(d)}">{dentro}{sello(d)}</div>'
 
 
 def sello(d):
@@ -220,58 +242,69 @@ def chips(lista):
     return '<ul class="chips">' + "".join(f"<li>{E(t)}</li>" for t in lista) + "</ul>"
 
 
-def proyecto(d, base, forma):
-    tec = d["tecnologias"] if forma else d["tecnologias"][:4]
-    return f"""    <a class="tarjeta proyecto {forma} aparece" href="proyectos/{d['slug']}.html">
-      <div class="marco">{visual(d, base)}{sello(d)}</div>
-      <div class="texto">
-        <span class="area">{E(d['area'])}</span>
-        <h3>{E(d['titulo'])}</h3>
-        <p>{E(d['resumen'])}</p>
-        {chips(tec)}
-        <span class="ver">Ver el proyecto</span>
+def sigla(d):
+    return f'<span class="sigla" style="--tono:{tono(d)}" aria-hidden="true">{E(d["sigla"])}</span>'
+
+
+def vitrina(lista, total, base):
+    """La ventana de la portada: lista de proyectos a la izquierda y vista previa a la derecha.
+    Sin JS se ve el primero y cada fila es un enlace a su ficha."""
+    filas, vistas = [], []
+    for i, d in enumerate(lista):
+        actual = ' aria-current="true"' if i == 0 else ""
+        filas.append(f"""        <li><a class="item" href="proyectos/{d['slug']}.html" data-i="{i}"{actual}>{sigla(d)}<span class="item-texto"><span class="item-titulo">{E(d['titulo'])}</span><span class="item-area">{E(d['area'])}</span></span><kbd class="item-abrir" aria-hidden="true">↵</kbd></a></li>""")
+        vistas.append(f"""        <div class="vista" data-i="{i}"{'' if i == 0 else ' hidden'}>
+          {marco(d, base, carga="eager")}
+          <div class="vista-texto"><h3>{E(d['titulo'])}</h3><p>{E(d['resumen'])}</p>{chips(d['tecnologias'][:4])}</div>
+        </div>""")
+    return f"""<div class="vitrina aparece" data-vitrina>
+    <div class="vitrina-barra">
+      <button class="vitrina-buscar" type="button" data-paleta aria-haspopup="dialog">{LUPA}<span>Buscar proyectos, secciones y enlaces</span><kbd data-atajo>Ctrl K</kbd></button>
+    </div>
+    <div class="vitrina-cuerpo">
+      <div class="vitrina-lado">
+        <p class="vitrina-grupo">Proyectos</p>
+        <ul class="vitrina-lista">
+{chr(10).join(filas)}
+        </ul>
       </div>
-    </a>"""
-
-
-def pieza(d):
-    # En la grilla van dibujos: las capturas no se entienden en ese tamaño
-    return f"""    <a class="tarjeta proyecto aparece" href="proyectos/{d['slug']}.html">
-      <div class="marco">{arte(d['slug'])}{sello(d)}</div>
-      <div class="texto">
-        <span class="area">{E(d['area'])}</span>
-        <h3>{E(d['titulo'])}</h3>
-        <p>{E(d['resumen'])}</p>
-      </div>
-    </a>"""
-
-
-def formas(n):
-    """El primero ancho; si los que siguen quedan impares, el último también, del otro lado."""
-    f = [""] * n
-    if n:
-        f[0] = "ancho"
-    if n > 1 and (n - 1) % 2:
-        f[-1] = "ancho invertido"
-    return f
-
-
-def medidor():
-    return """<div class="tarjeta ventana medidor aparece">
-    <div class="ventana-barra"><div class="puntos" aria-hidden="true"><i></i><i></i><i></i></div><span>Capacidad de una línea según el viento</span><button id="pausa" type="button">Pausar</button></div>
-    <div class="medidor-cuerpo">
-      <div class="lienzo"><canvas id="paisaje" aria-hidden="true"></canvas></div>
-      <div class="panel">
-        <label for="viento">Viento perpendicular <span id="v-viento">4,0 m/s</span></label>
-        <input id="viento" type="range" min="0" max="15" step="0.5" value="4">
-        <dl class="lecturas">
-          <div><dt>Corriente admisible</dt><dd id="v-corriente">800 A</dd></div>
-          <div><dt>Temperatura con 400 A</dt><dd id="v-temp">38 °C</dd></div>
-        </dl>
-        <p class="supuestos">Balance térmico de un cobre de 120 mm²: 70 °C de máxima, 25 °C de ambiente y pleno sol. Con mouse alcanza con moverlo sobre el dibujo.</p>
+      <div class="vitrina-vista">
+{chr(10).join(vistas)}
       </div>
     </div>
+    <div class="vitrina-pie"><a href="#trabajo">Ver los {total} proyectos</a><span class="atajos"><kbd>↑</kbd><kbd>↓</kbd> recorrer <kbd>Enter</kbd> abrir</span></div>
   </div>"""
+
+
+def tarjeta_proyecto(d, base, clase):
+    chico = "chica" in clase
+    return f"""    <a class="tarjeta proyecto {clase} aparece" href="proyectos/{d['slug']}.html">
+      {marco(d, base, chico)}
+      <div class="texto">
+        <span class="area"><i style="--tono:{tono(d)}"></i>{E(d['area'])}</span>
+        <h3>{E(d['titulo'])}</h3>
+        <p>{E(d['resumen'])}</p>
+        {chips(d['tecnologias'][:3 if chico else 4])}
+      </div>
+      <span class="ir" aria-hidden="true">→</span>
+    </a>"""
+
+
+def clases(n):
+    """Dos grandes arriba y el resto de a tres. Las sueltas del final se estiran para no dejar huecos."""
+    c = ["grande"] * min(2, n) + ["chica"] * max(0, n - 2)
+    if n == 1:
+        c[0] += " sola"
+    resto = n - 2
+    if resto > 0:
+        if resto % 3 == 1:
+            c[-1] += " fin-1"
+        elif resto % 3 == 2:
+            c[-1] += " fin-2"
+            c[-2] += " fin-2"
+        if resto % 2:
+            c[-1] += " impar"
+    return c
 
 
 def laboratorio():
@@ -308,54 +341,57 @@ def laboratorio():
 
 
 def portada(fichas, base, vista_previa):
-    por_slug = {d["slug"]: d for d in fichas}
-    grandes = [por_slug[s] for s in DESTACADOS if s in por_slug]
-    areas = list(dict.fromkeys(["Sistemas eléctricos"] + [d["area"] for d in fichas]))
-    chicas = sorted((d for d in fichas if d["slug"] not in DESTACADOS), key=lambda d: (areas.index(d["area"]), d["orden"]))
-    bento = "\n".join(proyecto(d, base, f) for d, f in zip(grandes, formas(len(grandes))))
+    todas = ordenar(fichas)
+    grilla = "\n".join(tarjeta_proyecto(d, base, c) for d, c in zip(todas, clases(len(todas))))
     return pagina(
-        "Nicolas Sgandurra | Ingeniería eléctrica y programación",
-        "Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Proyectos de electricidad, simulación y software.",
+        "Nicolas Sgandurra | Proyectos",
+        "Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Simuladores, herramientas de cálculo y software.",
         f"""<section class="portada" id="inicio">
-  <p class="estado"><i aria-hidden="true"></i>Disponible desde comienzos de 2027</p>
+  <a class="estado" href="#laboratorio"><span class="estado-marca">Laboratorio</span><span>Probá el simulador<span class="extra"> de neutro flotante</span></span><span class="estado-flecha" aria-hidden="true">→</span></a>
   <h1>Nicolas Sgandurra</h1>
-  <p class="lema">Estudio la electricidad, la enseño y la programo. Técnico electricista y estudiante avanzado de Ingeniería Electromecánica en la UTN San Rafael.</p>
+  <p class="lema">Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Hago simuladores, herramientas de cálculo y software a medida.</p>
   <div class="botones">
     <a class="boton lleno" href="#trabajo">Ver proyectos</a>
-    <a class="boton" href="#contacto">Escribime</a>
+    <a class="boton" href="#contacto">Contacto</a>
   </div>
-  {medidor()}
+  {vitrina(todas[:EN_VITRINA], len(todas), base)}
 </section>
 
 <main id="contenido">
-<section class="bloque" id="sobre-mi">
-  <div class="sobre">
-    <div class="aparece">
-      {icono(base)}
-      <p class="etiqueta">Sobre mí</p>
-      <h2>Hola, soy Nico.</h2>
-      <p>Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN.</p>
-      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador. Y si un cálculo hay que repetirlo miles de veces, lo programo. También hago software a medida, sentado con quien lo va a usar para entender cómo trabaja.</p>
+<section class="bloque" id="trabajo">
+  <div class="cabeza">
+    <div>
+      <p class="etiqueta">Proyectos</p>
+      <h2>Lo que vengo haciendo</h2>
+      <p class="entrada">Simuladores, herramientas de cálculo y software. Cada ficha cuenta el problema, qué hice y hasta dónde llega.</p>
     </div>
-    <dl class="tarjeta ficha-personal aparece">
-      <div><dt>Dónde estoy</dt><dd>San Rafael, Mendoza, Argentina</dd></div>
-      <div><dt>Disponibilidad</dt><dd>Desde comienzos de 2027, full time</dd></div>
-      <div><dt>Estudios</dt><dd>Ingeniería Electromecánica, UTN San Rafael. Graduación prevista en 2027</dd></div>
-      <div><dt>Docencia</dt><dd>Circuitos Eléctricos 1 y 2, desde 2021</dd></div>
-      <div><dt>Idiomas</dt><dd>Español nativo, inglés intermedio</dd></div>
-    </dl>
+    <a class="enlace" href="{base}catalogo/index.html">Catálogo completo</a>
+  </div>
+  <div class="proyectos">
+{grilla}
   </div>
 </section>
 
-<section class="bloque" id="trabajo">
-  <p class="etiqueta">Proyectos</p>
-  <h2>Trabajo seleccionado</h2>
-  <p class="entrada">Cada proyecto cuenta el problema, qué hice y hasta dónde llega.</p>
-  <div class="bento">
-{bento}
-  </div>
-  <div class="otros">
-{chr(10).join(pieza(d) for d in chicas)}
+<section class="bloque" id="sobre-mi">
+  <div class="sobre">
+    <div class="aparece">
+      <p class="etiqueta">Sobre mí</p>
+      <h2>Hola, soy Nico.</h2>
+      <p>Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN San Rafael.</p>
+      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador. Si un cálculo hay que repetirlo muchas veces, lo programo. Y cuando hago software para alguien, primero me siento con quien lo va a usar para entender cómo trabaja.</p>
+    </div>
+    <aside class="tarjeta perfil aparece">
+      <div class="perfil-cabeza">
+        {icono(base)}
+        <div><p class="perfil-nombre">Nicolas Sgandurra</p><p class="perfil-rol">Técnico electricista y docente</p></div>
+      </div>
+      <dl>
+        <div><dt>Dónde</dt><dd>San Rafael, Mendoza, Argentina</dd></div>
+        <div><dt>Estudios</dt><dd>Ingeniería Electromecánica, UTN San Rafael</dd></div>
+        <div><dt>Docencia</dt><dd>Circuitos Eléctricos 1 y 2, desde 2021</dd></div>
+        <div><dt>Idiomas</dt><dd>Español nativo, inglés intermedio</dd></div>
+      </dl>
+    </aside>
   </div>
 </section>
 
@@ -367,36 +403,42 @@ def portada(fichas, base, vista_previa):
   <div class="recorrido">
     <ol class="camino">
       <li class="aparece"><time>2017</time><div><h3>Tec.Nito</h3><p>Empiezo a trabajar por mi cuenta en reparación de equipos, redes y armado de workstations. Lo sigo haciendo.</p></div></li>
-      <li class="aparece"><time>2020</time><div><h3>Técnico Electricista</h3><p>Escuela 4-124 Reynaldo Merín.</p></div></li>
-      <li class="aparece"><time>2021</time><div><h3>Ingeniería Electromecánica y docencia</h3><p>Entro a la UTN San Rafael y, en octubre, empiezo a dar Circuitos Eléctricos 1 y 2 en la escuela donde me recibí.</p></div></li>
-      <li class="aparece"><time>2022</time><div><h3>Tecnicatura Universitaria en Programación</h3><p>Cursada completa entre 2022 y 2024. Equivalencia pendiente de acreditar.</p></div></li>
-      <li class="aparece"><time>2026</time><div><h3>Sistemas de potencia y software a medida</h3><p>Estudio preliminar de capacidad dinámica de una línea de 132 kV y desarrollo de Nexxo, un sistema de gestión que ya funciona en paralelo con el anterior. Termino de cursar la carrera.</p></div></li>
-      <li class="aparece"><time>2027</time><div><h3>Lo que sigue</h3><p>Recibirme de ingeniero y trabajar en proyectos eléctricos.</p></div></li>
+      <li class="aparece"><time>2020</time><div><h3>Técnico electricista</h3><p>Escuela 4-124 Reynaldo Merín.</p></div></li>
+      <li class="aparece"><time>2021</time><div><h3>Ingeniería y docencia</h3><p>Entro a Ingeniería Electromecánica en la UTN San Rafael y empiezo a dar Circuitos Eléctricos 1 y 2 en la escuela donde me recibí.</p></div></li>
+      <li class="aparece"><time>2022</time><div><h3>Tecnicatura Universitaria en Programación</h3><p>Cursada completa entre 2022 y 2024.</p></div></li>
+      <li class="aparece"><time>2026</time><div><h3>Software a medida</h3><p>Desarrollo un sistema de gestión para un comercio, que ya funciona en paralelo con el anterior. Termino de cursar la carrera.</p></div></li>
     </ol>
     <div class="herramientas aparece">
-      <div class="tarjeta"><h3>Ingeniería</h3>{chips(["Mathcad", "AutoCAD", "Autodesk Inventor", "Excel", "ETAP (inicial)"])}</div>
+      <div class="tarjeta"><h3>Ingeniería</h3>{chips(["Mathcad", "AutoCAD", "Autodesk Inventor", "Excel"])}</div>
       <div class="tarjeta"><h3>Programación</h3>{chips(["Python", "JavaScript", "TypeScript", "React", "FastAPI", "PostgreSQL"])}</div>
-      <div class="tarjeta"><h3>Control de versiones</h3>{chips(["Git", "GitHub"])}</div>
+      <div class="tarjeta"><h3>Herramientas</h3>{chips(["Git", "GitHub", "Arduino", "PowerShell"])}</div>
     </div>
   </div>
 </section>
 
 <section class="bloque contacto" id="contacto">
   <div class="tarjeta llamado aparece">
-    <h2>¿Trabajamos juntos?</h2>
-    <p>Escribime por correo o encontrame en LinkedIn y GitHub.</p>
+    <p class="etiqueta">Contacto</p>
+    <h2>Hablemos</h2>
+    <p>Si querés saber más de algún proyecto o tenés una propuesta, escribime.</p>
     <div class="botones">
       <a class="boton lleno correo" href="mailto:{CORREO}">{CORREO}</a>
       <button class="boton" type="button" data-copiar="{CORREO}" hidden>Copiar</button>
-      <a class="boton" href="{LINKEDIN}">LinkedIn</a>
-      <a class="boton" href="{GITHUB}">GitHub</a>
     </div>
+    <div class="redes"><a href="{LINKEDIN}">LinkedIn</a><a href="{GITHUB}">GitHub</a></div>
   </div>
 </section>
 </main>
 
-<footer class="pie"><span>Nicolas Leonel Sgandurra</span><span>San Rafael, Mendoza, Argentina</span></footer>""",
-        base, fichas, vista_previa=vista_previa, scripts=("linea",))
+{pie(base)}""",
+        base, fichas, vista_previa=vista_previa)
+
+
+def pie(base, inicio=""):
+    return f"""<footer class="pie">
+  <span>© 2026 Nicolas Leonel Sgandurra · San Rafael, Mendoza</span>
+  <nav aria-label="Enlaces del pie"><a href="{GITHUB}">GitHub</a><a href="{LINKEDIN}">LinkedIn</a><a href="{base}catalogo/index.html">Catálogo</a></nav>
+</footer>"""
 
 
 def ficha(d, base, fichas, vista_previa):
@@ -432,7 +474,7 @@ def ficha(d, base, fichas, vista_previa):
   {''.join(partes)}
 </article>
 </main>
-<footer class="pie"><span>Nicolas Leonel Sgandurra</span><a href="mailto:{CORREO}">{CORREO}</a></footer>"""
+{pie(base)}"""
     return pagina(f"{d['titulo']} | Nicolas Sgandurra", d["resumen"], cuerpo, base, fichas,
                   inicio="../index.html", proyectos="", vista_previa=vista_previa, clase="interior")
 

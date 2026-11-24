@@ -146,6 +146,69 @@
     });
   }
 
+  /* ---------- Sección actual resaltada en la barra */
+  var enlacesNav = Array.prototype.slice.call(document.querySelectorAll('.nav nav a[href^="#"]'));
+  if (enlacesNav.length && 'IntersectionObserver' in window) {
+    var porId = {};
+    enlacesNav.forEach(function (a) { porId[a.getAttribute('href').slice(1)] = a; });
+    var vigia = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        var a = porId[e.target.id];
+        if (!a) return;
+        if (e.isIntersecting) {
+          enlacesNav.forEach(function (o) { o.removeAttribute('aria-current'); });
+          a.setAttribute('aria-current', 'true');
+        } else if (a.getAttribute('aria-current')) {
+          a.removeAttribute('aria-current');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(porId).forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) vigia.observe(s);
+    });
+  }
+
+  /* ---------- Vitrina de la portada: lista y vista previa */
+  var vitrina = document.querySelector('[data-vitrina]');
+  if (vitrina) {
+    var items = Array.prototype.slice.call(vitrina.querySelectorAll('.item'));
+    var vistas = Array.prototype.slice.call(vitrina.querySelectorAll('.vista'));
+    var actual = 0;
+
+    var mostrar = function (i) {
+      if (i === actual) return;
+      actual = i;
+      items.forEach(function (it, k) {
+        if (k === i) it.setAttribute('aria-current', 'true'); else it.removeAttribute('aria-current');
+      });
+      vistas.forEach(function (v, k) { v.hidden = k !== i; });
+    };
+    /* Cualquier gesto del usuario corta el recorrido automático */
+    var manual = function () { vitrina.classList.remove('auto'); };
+
+    items.forEach(function (it, i) {
+      it.addEventListener('mouseenter', function () { manual(); mostrar(i); });
+      it.addEventListener('focus', function () { manual(); mostrar(i); });
+      it.addEventListener('keydown', function (ev) {
+        var paso = ev.key === 'ArrowDown' ? 1 : ev.key === 'ArrowUp' ? -1 : 0;
+        if (!paso) return;
+        ev.preventDefault();
+        items[(i + paso + items.length) % items.length].focus();
+      });
+    });
+
+    /* Avanza solo, con una barrita de progreso en CSS. Se frena con el mouse encima. */
+    if (!reducido && items.length > 1) {
+      vitrina.classList.add('auto');
+      vitrina.addEventListener('animationend', function (ev) {
+        if (!vitrina.classList.contains('auto') || ev.animationName !== 'avance') return;
+        mostrar((actual + 1) % items.length);
+      });
+      vitrina.addEventListener('touchstart', manual, { passive: true });
+    }
+  }
+
   /* ---------- Neutro flotante, por el teorema de Millman */
   var lab = document.getElementById('lab-neutro');
   if (!lab) return;
