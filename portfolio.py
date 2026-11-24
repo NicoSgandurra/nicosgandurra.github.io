@@ -345,11 +345,11 @@ def portada(fichas, base, vista_previa):
     grilla = "\n".join(tarjeta_proyecto(d, base, c) for d, c in zip(todas, clases(len(todas))))
     return pagina(
         "Nicolas Sgandurra | Proyectos",
-        "Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Simuladores, herramientas de cálculo y software.",
+        "Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Simuladores y software para ingeniería.",
         f"""<section class="portada" id="inicio">
   <a class="estado" href="#laboratorio"><span class="estado-marca">Laboratorio</span><span>Probá el simulador<span class="extra"> de neutro flotante</span></span><span class="estado-flecha" aria-hidden="true">→</span></a>
   <h1>Nicolas Sgandurra</h1>
-  <p class="lema">Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Hago simuladores, herramientas de cálculo y software a medida.</p>
+  <p class="lema">Técnico electricista y docente de Circuitos Eléctricos. Estudio Ingeniería Electromecánica en la UTN San Rafael y programo simuladores y software a medida.</p>
   <div class="botones">
     <a class="boton lleno" href="#trabajo">Ver proyectos</a>
     <a class="boton" href="#contacto">Contacto</a>
@@ -363,7 +363,7 @@ def portada(fichas, base, vista_previa):
     <div>
       <p class="etiqueta">Proyectos</p>
       <h2>Lo que vengo haciendo</h2>
-      <p class="entrada">Simuladores, herramientas de cálculo y software. Cada ficha cuenta el problema, qué hice y hasta dónde llega.</p>
+      <p class="entrada">Cada ficha cuenta el problema, qué hice y hasta dónde llega.</p>
     </div>
     <a class="enlace" href="{base}catalogo/index.html">Catálogo completo</a>
   </div>
@@ -378,7 +378,7 @@ def portada(fichas, base, vista_previa):
       <p class="etiqueta">Sobre mí</p>
       <h2>Hola, soy Nico.</h2>
       <p>Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN San Rafael.</p>
-      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador. Si un cálculo hay que repetirlo muchas veces, lo programo. Y cuando hago software para alguien, primero me siento con quien lo va a usar para entender cómo trabaja.</p>
+      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador; si un cálculo se repite mucho, lo programo. En el software a medida empiezo por sentarme con quien lo va a usar, para ver cómo trabaja.</p>
     </div>
     <aside class="tarjeta perfil aparece">
       <div class="perfil-cabeza">

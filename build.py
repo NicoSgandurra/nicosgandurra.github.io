@@ -93,9 +93,8 @@ def portada(fichas, vista_previa):
             grupos.append(f'<section>\n  <h2>{area}</h2>\n  <div class="grilla">\n{tarjetas}\n  </div>\n</section>')
     cuerpo = """<section class="intro">
   <h1>Proyectos de ingeniería</h1>
-  <p>Soy técnico electricista, docente de Circuitos Eléctricos y estudiante avanzado de Ingeniería
-  Electromecánica en la UTN San Rafael. Cada proyecto tiene una ficha con el problema, lo que hice y sus límites.
-  <a href="../index.html">Volver al inicio</a>.</p>
+  <p>Todas las fichas en una lista, cada una con el problema, lo que hice y sus límites.
+  La presentación y la vitrina están en la <a href="../index.html">página principal</a>.</p>
 </section>
 """ + "\n".join(grupos)
     return pagina(f"{SITIO} | Proyectos de ingeniería",
