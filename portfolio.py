@@ -14,10 +14,9 @@ CORREO = "nico.sgandurra@gmail.com"
 GITHUB = "https://github.com/NicoSgandurra"
 LINKEDIN = "https://www.linkedin.com/in/nicosgandurra"
 
-# Orden de la vitrina y de la grilla. Los borradores van siempre al final.
+# Orden de la grilla. Los borradores van siempre al final.
 ORDEN = ["nexxo", "simuladores-electricos", "atuel-motos-web", "intercambiador-de-calor", "cuackdernos",
          "mibilletera", "oswald", "capacidad-dinamica-de-lineas", "neutro-flotante", "pcscanner", "motor-paso-a-paso"]
-EN_VITRINA = 6
 GRANDES = 4
 ROJO, AZUL, VERDE, AMBAR = "#ff7a7a", "#7cb4ff", "#4ade9b", "#fbbf24"
 TONOS = {"Sistemas eléctricos": VERDE, "Ingeniería mecánica y térmica": AMBAR, "Software y automatización": AZUL,
@@ -247,40 +246,6 @@ def chips(lista):
     return '<ul class="chips">' + "".join(f"<li>{E(t)}</li>" for t in lista) + "</ul>"
 
 
-def sigla(d):
-    return f'<span class="sigla" style="--tono:{tono(d)}" aria-hidden="true">{E(d["sigla"])}</span>'
-
-
-def vitrina(lista, total, base):
-    """La ventana de la portada: lista de proyectos a la izquierda y vista previa a la derecha.
-    Sin JS se ve el primero y cada fila es un enlace a su ficha."""
-    filas, vistas = [], []
-    for i, d in enumerate(lista):
-        actual = ' aria-current="true"' if i == 0 else ""
-        filas.append(f"""        <li><a class="item" href="proyectos/{d['slug']}.html" data-i="{i}"{actual}>{sigla(d)}<span class="item-texto"><span class="item-titulo">{E(d['titulo'])}</span><span class="item-area">{E(d['area'])}</span></span><kbd class="item-abrir" aria-hidden="true">↵</kbd></a></li>""")
-        vistas.append(f"""        <div class="vista" data-i="{i}"{'' if i == 0 else ' hidden'}>
-          {marco(d, base, carga="eager")}
-          <div class="vista-texto"><h3>{E(d['titulo'])}</h3><p>{E(d['resumen'])}</p>{chips(d['tecnologias'][:4])}</div>
-        </div>""")
-    return f"""<div class="vitrina aparece" data-vitrina>
-    <div class="vitrina-barra">
-      <button class="vitrina-buscar" type="button" data-paleta aria-haspopup="dialog">{LUPA}<span>Buscar proyectos, secciones y enlaces</span><kbd data-atajo>Ctrl K</kbd></button>
-    </div>
-    <div class="vitrina-cuerpo">
-      <div class="vitrina-lado">
-        <p class="vitrina-grupo">Proyectos</p>
-        <ul class="vitrina-lista">
-{chr(10).join(filas)}
-        </ul>
-      </div>
-      <div class="vitrina-vista">
-{chr(10).join(vistas)}
-      </div>
-    </div>
-    <div class="vitrina-pie"><a href="#trabajo">Ver los {total} proyectos</a><span class="atajos"><kbd>↑</kbd><kbd>↓</kbd> recorrer <kbd>Enter</kbd> abrir</span></div>
-  </div>"""
-
-
 def tarjeta_proyecto(d, base, clase):
     chico = "chica" in clase
     return f"""    <a class="tarjeta proyecto {clase} aparece" href="proyectos/{d['slug']}.html">
@@ -358,7 +323,6 @@ def portada(fichas, base, vista_previa):
     <a class="boton lleno" href="#trabajo">Ver proyectos</a>
     <a class="boton" href="#contacto">Contacto</a>
   </div>
-  {vitrina(todas[:EN_VITRINA], len(todas), base)}
 </section>
 
 <main id="contenido">

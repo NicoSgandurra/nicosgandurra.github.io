@@ -32,8 +32,8 @@
     });
   }
 
-  /* ---------- Ventanas que se enderezan al bajar (vitrina y portada de cada proyecto) */
-  var inclinables = Array.prototype.slice.call(document.querySelectorAll('.vitrina, [data-inclinar] .marco'));
+  /* ---------- Ventanas que se enderezan al bajar (portada de cada proyecto) */
+  var inclinables = Array.prototype.slice.call(document.querySelectorAll('[data-inclinar] .marco'));
   if (!reducido && inclinables.length) {
     var pendiente = false;
     var inclinar = function () {
@@ -227,46 +227,6 @@
       var s = document.getElementById(id);
       if (s) vigia.observe(s);
     });
-  }
-
-  /* ---------- Vitrina de la portada: lista y vista previa */
-  var vitrina = document.querySelector('[data-vitrina]');
-  if (vitrina) {
-    var items = Array.prototype.slice.call(vitrina.querySelectorAll('.item'));
-    var vistas = Array.prototype.slice.call(vitrina.querySelectorAll('.vista'));
-    var actual = 0;
-
-    var mostrar = function (i) {
-      if (i === actual) return;
-      actual = i;
-      items.forEach(function (it, k) {
-        if (k === i) it.setAttribute('aria-current', 'true'); else it.removeAttribute('aria-current');
-      });
-      vistas.forEach(function (v, k) { v.hidden = k !== i; });
-    };
-    /* Cualquier gesto del usuario corta el recorrido automático */
-    var manual = function () { vitrina.classList.remove('auto'); };
-
-    items.forEach(function (it, i) {
-      it.addEventListener('mouseenter', function () { manual(); mostrar(i); });
-      it.addEventListener('focus', function () { manual(); mostrar(i); });
-      it.addEventListener('keydown', function (ev) {
-        var paso = ev.key === 'ArrowDown' ? 1 : ev.key === 'ArrowUp' ? -1 : 0;
-        if (!paso) return;
-        ev.preventDefault();
-        items[(i + paso + items.length) % items.length].focus();
-      });
-    });
-
-    /* Avanza solo, con una barrita de progreso en CSS. Se frena con el mouse encima. */
-    if (!reducido && items.length > 1) {
-      vitrina.classList.add('auto');
-      vitrina.addEventListener('animationend', function (ev) {
-        if (!vitrina.classList.contains('auto') || ev.animationName !== 'avance') return;
-        mostrar((actual + 1) % items.length);
-      });
-      vitrina.addEventListener('touchstart', manual, { passive: true });
-    }
   }
 
   /* ---------- Neutro flotante, por el teorema de Millman */
