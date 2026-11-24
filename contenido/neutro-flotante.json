@@ -4,7 +4,7 @@
   "titulo": "Simulador de neutro flotante",
   "sigla": "N",
   "imagen": "neutro-flotante.jpg",
-  "pie": "Cargas de 10, 20 y 40 ohm con el neutro desconectado.",
+  "pie": "Cargas de 10, 20 y 40 Ω con el neutro desconectado.",
   "resumen": "Muestra qué tensiones aparecen cuando se corta el neutro con cargas desequilibradas.",
   "estado": "Publicado",
   "autoria": "Proyecto personal, con asistencia de IA para programar.",
@@ -20,15 +20,15 @@
   ],
   "resultados": [
     [
-      "Tensión en R (10 ohm)",
+      "Tensión en R (10 Ω)",
       "144,0 V"
     ],
     [
-      "Tensión en T (20 ohm)",
+      "Tensión en T (20 Ω)",
       "249,5 V"
     ],
     [
-      "Tensión en S (40 ohm)",
+      "Tensión en S (40 Ω)",
       "288,0 V"
     ],
     [

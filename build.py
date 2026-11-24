@@ -94,7 +94,7 @@ def portada(fichas, vista_previa):
     cuerpo = """<section class="intro">
   <h1>Proyectos de ingeniería</h1>
   <p>Todas las fichas en una lista, cada una con el problema, lo que hice y sus límites.
-  La presentación y la vitrina están en la <a href="../index.html">página principal</a>.</p>
+  La presentación está en la <a href="../index.html">página principal</a>.</p>
 </section>
 """ + "\n".join(grupos)
     return pagina(f"{SITIO} | Proyectos de ingeniería",

@@ -279,7 +279,7 @@ def portada(fichas, base, vista_previa):
     grilla = "\n".join(tarjeta_proyecto(d, base, c) for d, c in zip(todas, clases(len(todas))))
     return pagina(
         "Nicolas Sgandurra | Proyectos",
-        "Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Simuladores y software para ingeniería.",
+        "Técnico electricista, docente y estudiante de Ingeniería Electromecánica. Simuladores, software y sitios web a medida.",
         f"""<section class="portada" id="inicio">
   <h1>Nicolas Sgandurra</h1>
   <p class="lema">Técnico electricista y docente de Circuitos Eléctricos. Estudio Ingeniería Electromecánica en la UTN San Rafael y programo simuladores, software y sitios web a medida.</p>
@@ -394,7 +394,7 @@ def presentacion(d, base, fichas, vista_previa):
         principal = "".join(f'<a class="boton{' lleno' if i == 0 else ''}" href="{E(u)}">{E(n)}</a>'
                             for i, (n, u) in enumerate(d["enlaces"]))
     else:
-        principal = f'<a class="boton lleno" href="mailto:{CORREO}?subject={asunto}">Pedir una demostración</a>'
+        principal = f'<a class="boton lleno" href="mailto:{CORREO}?subject={asunto}">{E(d.get("boton", "Pedir una demostración"))}</a>'
     portada_visual = marco(d, base, carga="eager") if d.get("imagen") else f'<div class="marco">{arte(d["slug"])}</div>'
     partes = []
     if p.get("cifras"):
@@ -441,7 +441,7 @@ def presentacion(d, base, fichas, vista_previa):
     if d.get("limites"):
         partes.append(f"""<section class="pres-bloque pres-dos">
   <h2 class="aparece">Estado y límites</h2>
-  <div class="aparece"><p class="pres-estado">{E(d['estado'])}. {E(d['autoria'])}</p>
+  <div class="aparece"><dl class="pres-meta"><div><dt>Estado</dt><dd>{E(d['estado'])}</dd></div><div><dt>Autoría</dt><dd>{E(d['autoria'])}</dd></div></dl>
   <ul class="pres-limites">{''.join(f'<li>{E(x)}</li>' for x in d['limites'])}</ul></div>
 </section>""")
     aviso = f'<p class="pendiente">Antes de publicar: {E(d["pendiente"])}</p>' if d["borrador"] else ""

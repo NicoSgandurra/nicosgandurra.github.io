@@ -9,7 +9,12 @@
   "resumen": "Configurador web para diseñar un cuaderno de discos personalizado, ver cómo queda y encargarlo por WhatsApp.",
   "estado": "Publicado en cuackdernos.web.app",
   "autoria": "Desarrollo propio.",
-  "tecnologias": ["HTML", "JavaScript", "Tailwind CSS", "Firebase"],
+  "tecnologias": [
+    "HTML",
+    "JavaScript",
+    "Tailwind CSS",
+    "Firebase"
+  ],
   "problema": "Un emprendimiento de cuadernos de discos armaba cada pedido por mensaje, preguntando tamaño, hojas, portada y colores uno por uno.",
   "trabajo": [
     "Configurador en seis pasos: tamaño, sujeción, discos, interior, portada y colores.",
@@ -20,28 +25,79 @@
     "El costo es una estimación y el pedido se confirma por WhatsApp."
   ],
   "enlaces": [
-    ["Visitar el sitio", "https://cuackdernos.web.app/"]
+    [
+      "Visitar el sitio",
+      "https://cuackdernos.web.app/"
+    ],
+    [
+      "Ver el código",
+      "https://github.com/NicoSgandurra/CuackdernosWEBSITE"
+    ]
   ],
   "presentacion": {
     "lema": "Un cuaderno a medida, elegido paso a paso, con la vista previa y el precio al lado.",
     "intro": "Cuackdernos vende cuadernos de discos personalizados. El sitio reemplaza el ida y vuelta de mensajes por un configurador: la persona elige cada parte, ve cómo queda y manda el pedido armado por WhatsApp.",
-    "cifras": [["6", "pasos para armar el cuaderno"], ["29", "diseños de portada, más uno propio"], ["4", "tamaños, de A4 a ficha"]],
+    "cifras": [
+      [
+        "6",
+        "pasos para armar el cuaderno"
+      ],
+      [
+        "29",
+        "diseños de portada, más uno propio"
+      ],
+      [
+        "4",
+        "tamaños, de A4 a ficha"
+      ]
+    ],
     "funciones": [
-      ["Tamaño y sujeción", "A4, A5, A6 o ficha N3, con los discos a la izquierda o arriba."],
-      ["Discos", "Discos de 24 o 32 mm, según la cantidad de hojas."],
-      ["Interior", "Notas o planner perpetuo, con hojas rayadas, lisas, cuadriculadas o punteadas."],
-      ["Portada", "Una galería de diseños y la opción de usar uno propio."],
-      ["Colores de los discos", "Un color para todos o uno distinto para cada disco, tocándolo en la vista previa."],
-      ["Pedido", "Calcula un costo estimado y arma el mensaje de WhatsApp con todo lo elegido."]
+      [
+        "Tamaño y sujeción",
+        "A4, A5, A6 o ficha N3, con los discos a la izquierda o arriba."
+      ],
+      [
+        "Discos",
+        "Discos de 24 o 32 mm, según la cantidad de hojas."
+      ],
+      [
+        "Interior",
+        "Notas o planner perpetuo, con hojas rayadas, lisas, cuadriculadas o punteadas."
+      ],
+      [
+        "Portada",
+        "Una galería de diseños y la opción de usar uno propio."
+      ],
+      [
+        "Colores de los discos",
+        "Un color para todos o uno distinto para cada disco, tocándolo en la vista previa."
+      ],
+      [
+        "Pedido",
+        "Calcula un costo estimado y arma el mensaje de WhatsApp con todo lo elegido."
+      ]
     ],
     "galeria": [
-      ["cuackdernos-portadas.jpg", "Portadas y vista previa", "Al elegir una portada, la vista previa del cuaderno cambia al instante y el costo se actualiza abajo."]
+      [
+        "cuackdernos-portadas.jpg",
+        "Portadas y vista previa",
+        "Al elegir una portada, la vista previa del cuaderno cambia al instante y el costo se actualiza abajo."
+      ]
     ],
     "pasos": [
-      ["Relevamiento", "Las opciones que ofrece el emprendimiento y las preguntas que se repetían en cada pedido."],
-      ["Diseño", "Una estética de cuaderno, cálida y con modo oscuro, pensada primero para el celular."],
-      ["Publicación", "Sitio estático en Firebase Hosting, con el pedido resuelto por WhatsApp."]
+      [
+        "Relevamiento",
+        "Las opciones que ofrece el emprendimiento y las preguntas que se repetían en cada pedido."
+      ],
+      [
+        "Diseño",
+        "Una estética de cuaderno, cálida y con modo oscuro, pensada primero para el celular."
+      ],
+      [
+        "Publicación",
+        "Sitio estático en Firebase Hosting, con el pedido resuelto por WhatsApp."
+      ]
     ],
-    "cierre": "El sitio está publicado y se puede probar. Si querés algo parecido para tu emprendimiento, escribime."
+    "cierre": "El sitio está publicado y el código es público. Si querés algo parecido para tu emprendimiento, escribime."
   }
 }

@@ -9,7 +9,12 @@
   "resumen": "Estudio preliminar de cuánta corriente admite una línea existente según el clima de cada hora.",
   "estado": "Estudio preliminar (octubre a noviembre de 2026)",
   "autoria": "Proyecto individual.",
-  "tecnologias": ["Python", "NumPy", "Matplotlib", "ERA5"],
+  "tecnologias": [
+    "Python",
+    "NumPy",
+    "Matplotlib",
+    "ERA5"
+  ],
   "problema": "Una línea de 132 kV tiene declarada una capacidad fija de 400 A, calculada para condiciones desfavorables. La corriente que admite el conductor cambia con el viento, el sol y la temperatura, así que buena parte del tiempo podría llevar más.",
   "trabajo": [
     "División de la traza en 69 tramos y balance térmico hora por hora con 31 años de clima.",
@@ -17,11 +22,26 @@
     "Propuesta de ubicación de sensores en los tramos críticos."
   ],
   "resultados": [
-    ["Capacidad declarada", "400 A"],
-    ["Capacidad térmica mediana del conductor", "725 A"],
-    ["Primer límite: transformadores de corriente con sobrecarga", "480 A"],
-    ["Horas en que el conductor admite 480 A o más", "96,5 %"],
-    ["Ganancia media estimada", "19,6 %"]
+    [
+      "Capacidad declarada",
+      "400 A"
+    ],
+    [
+      "Capacidad térmica mediana del conductor",
+      "725 A"
+    ],
+    [
+      "Primer límite: transformadores de corriente con sobrecarga",
+      "480 A"
+    ],
+    [
+      "Horas en que el conductor admite 480 A o más",
+      "96,5 %"
+    ],
+    [
+      "Ganancia media estimada",
+      "19,6 %"
+    ]
   ],
   "limites": [
     "Falta confirmar el conductor, la sobrecarga de los transformadores de corriente y el arranque de los relés.",
@@ -31,22 +51,64 @@
   "presentacion": {
     "lema": "Cuánta corriente puede llevar una línea según el clima de cada hora, y qué equipo la limita primero.",
     "intro": "La capacidad dinámica (DLR, por sus siglas en inglés) usa el clima real en lugar de un caso fijo. En este estudio dividí la traza de una línea existente en 69 tramos y calculé el balance térmico del conductor hora por hora, con 31 años de datos meteorológicos (1995 a 2025).",
-    "cifras": [["69", "tramos de la traza"], ["31 años", "de clima, hora por hora"], ["19,6 %", "ganancia media estimada"]],
+    "cifras": [
+      [
+        "69",
+        "tramos de la traza"
+      ],
+      [
+        "31 años",
+        "de clima, hora por hora"
+      ],
+      [
+        "19,6 %",
+        "ganancia media estimada"
+      ]
+    ],
     "funciones": [
-      ["Balance térmico", "Calor que recibe el conductor por la corriente y el sol, y calor que pierde por el viento y la radiación, en cada tramo y cada hora."],
-      ["Validación", "El modelo en Python se contrastó con un ejemplo numérico publicado, con una diferencia menor al 1 %."],
-      ["Equipos en serie", "Transformadores de corriente, trampa de onda y otros equipos que pueden limitar antes que el conductor."],
-      ["Protecciones", "Revisión de que la corriente mayor no entre en el alcance de la zona 3 de las protecciones de distancia."],
-      ["Sensores", "Propuesta de ubicación de sensores en los tramos más desfavorables."]
+      [
+        "Balance térmico",
+        "Calor que recibe el conductor por la corriente y el sol, y calor que pierde por el viento y la radiación, en cada tramo y cada hora."
+      ],
+      [
+        "Validación",
+        "El modelo en Python se contrastó con un ejemplo numérico publicado, con una diferencia menor al 1 %."
+      ],
+      [
+        "Equipos en serie",
+        "Transformadores de corriente, trampa de onda y otros equipos que pueden limitar antes que el conductor."
+      ],
+      [
+        "Protecciones",
+        "Verificación de que la mayor corriente de carga no invada el alcance de la zona 3 de las protecciones de distancia."
+      ],
+      [
+        "Sensores",
+        "Propuesta de ubicación de sensores en los tramos más desfavorables."
+      ]
     ],
     "galeria": [
-      ["capacidad-dinamica-duracion.jpg", "Curva de duración", "Porcentaje del tiempo en que el tramo más desfavorable admite cada corriente. Con los transformadores de corriente al 120 %, el límite pasa a 480 A y el conductor lo admite el 96,5 % de las horas."]
+      [
+        "capacidad-dinamica-duracion.jpg",
+        "Curva de duración",
+        "Porcentaje del tiempo en que el tramo más desfavorable admite cada corriente. Con los transformadores de corriente al 120 %, el límite pasa a 480 A y el conductor lo admite el 96,5 % de las horas."
+      ]
     ],
     "pasos": [
-      ["Datos", "Clima horario del reanálisis ERA5 para cada tramo de la traza."],
-      ["Modelo", "Balance térmico del conductor programado en Python y verificado con un caso publicado."],
-      ["Límites", "Comparación con los equipos en serie y las protecciones para encontrar el primer límite real."]
+      [
+        "Datos",
+        "Clima horario del reanálisis ERA5 para cada tramo de la traza."
+      ],
+      [
+        "Modelo",
+        "Balance térmico del conductor programado en Python y verificado con un caso publicado."
+      ],
+      [
+        "Límites",
+        "Comparación con los equipos en serie y las protecciones para encontrar el primer límite real."
+      ]
     ],
     "cierre": "El informe completo y el código son privados. Si te interesa el método, escribime."
-  }
+  },
+  "boton": "Consultar por el estudio"
 }
