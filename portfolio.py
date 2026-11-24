@@ -24,12 +24,10 @@ TONOS = {"Sistemas eléctricos": VERDE, "Ingeniería mecánica y térmica": AMBA
 # Proyectos con un dibujo propio: en las tarjetas chicas se ve mejor que una captura
 ARTES = {"neutro-flotante", "motor-paso-a-paso", "pcscanner", "nexxo", "picocero",
          "rosca-transportadora", "intercambiador-de-calor"}
-FASES = [("r", "R", ROJO, 10), ("t", "T", AZUL, 20), ("s", "S", VERDE, 40)]
-INICIAL = {"r": "144,0 V", "t": "249,5 V", "s": "288,0 V", "n": "83,2 V"}  # lo que se ve sin JS
 FUENTES = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600"
            "&family=JetBrains+Mono:wght@400;500&display=swap")
 SECCIONES = [("Inicio", "#inicio"), ("Proyectos", "#trabajo"), ("Sobre mí", "#sobre-mi"),
-             ("Laboratorio", "#laboratorio"), ("Trayectoria", "#trayectoria"), ("Contacto", "#contacto")]
+             ("Trayectoria", "#trayectoria"), ("Contacto", "#contacto")]
 LUPA = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
         '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>')
 
@@ -201,7 +199,6 @@ def pagina(titulo, descripcion, cuerpo, base, fichas, inicio="", proyectos="proy
   <nav aria-label="Principal"><ul>
     <li><a href="{inicio}#trabajo">Proyectos</a></li>
     <li class="opcional"><a href="{inicio}#sobre-mi">Sobre mí</a></li>
-    <li class="opcional"><a href="{inicio}#laboratorio">Laboratorio</a></li>
     <li class="opcional"><a href="{inicio}#trayectoria">Trayectoria</a></li>
     <li><a href="{inicio}#contacto">Contacto</a></li>
   </ul></nav>
@@ -277,39 +274,6 @@ def clases(n):
     return c
 
 
-def laboratorio():
-    vert = [(130 * math.cos(math.radians(a)), -130 * math.sin(math.radians(a))) for a in (0, 120, 240)]
-    dibujo = [circulo(0, 0, r, "rgba(255,255,255,.09)", ancho=1) for r in (65, 130)]
-    dibujo.append(trazo(vert + vert[:1], "rgba(255,255,255,.14)", 1, 'stroke-dasharray="4 5"'))
-    filas = []
-    for (i, letra, color, ohm), (x, y) in zip(FASES, vert):
-        dibujo += [f'<line id="fasor-{i}" x1="0" y1="0" x2="{x:.1f}" y2="{y:.1f}" stroke="{color}"/>',
-                   circulo(x, y, 4.5, relleno=color),
-                   f'<text x="{x * 1.17:.1f}" y="{y * 1.17 + 5:.1f}" text-anchor="middle">{letra}</text>']
-        filas.append(f"""        <div class="fase" style="--color-fase:{color}">
-          <label for="carga-{i}">Fase {letra}, <span id="ohm-{i}">{ohm} Ω</span></label>
-          <output id="u-{i}">{INICIAL[i]}</output>
-          <input id="carga-{i}" type="range" min="5" max="100" value="{ohm}">
-        </div>""")
-    dibujo.append(f'<circle id="punto-n" cx="0" cy="0" r="6.5" fill="{AMBAR}"/>')
-    return f"""<section class="bloque laboratorio" id="laboratorio">
-  <p class="etiqueta">Laboratorio</p>
-  <h2>¿Qué pasa si se corta el neutro?</h2>
-  <p class="entrada">Es un tema que doy en clase y se entiende mejor jugando. Cambiá las cargas y mirá cómo se corre el neutro: unas fases quedan con tensión de más y otras de menos.</p>
-  <div class="tarjeta ventana aparece">
-    <div class="ventana-barra"><div class="puntos" aria-hidden="true"><i></i><i></i><i></i></div><span>Neutro flotante · teorema de Millman</span><div class="relleno"></div></div>
-    <div class="banco" id="lab-neutro">
-      <div class="fasores-caja"><svg class="fasores" viewBox="-170 -170 340 340" role="img" aria-label="Diagrama fasorial de las tres fases y el punto neutro">{''.join(dibujo)}</svg></div>
-      <div class="controles">
-{chr(10).join(filas)}
-        <label class="interruptor" for="corte"><input id="corte" type="checkbox" checked> Neutro cortado</label>
-        <p class="nota">Desplazamiento del neutro: <output id="u-n">{INICIAL["n"]}</output>. Fuente ideal de 220 V por fase y cargas resistivas.</p>
-      </div>
-    </div>
-  </div>
-</section>"""
-
-
 def portada(fichas, base, vista_previa):
     todas = visibles(fichas)
     grilla = "\n".join(tarjeta_proyecto(d, base, c) for d, c in zip(todas, clases(len(todas))))
@@ -345,25 +309,13 @@ def portada(fichas, base, vista_previa):
     <div class="aparece">
       <p class="etiqueta">Sobre mí</p>
       <h2>Hola, soy Nico.</h2>
-      <p>Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN San Rafael.</p>
+    </div>
+    <div class="aparece">
+      <p class="sobre-grande">Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN San Rafael.</p>
       <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador; si un cálculo se repite mucho, lo programo. En el software a medida empiezo por sentarme con quien lo va a usar, para ver cómo trabaja.</p>
     </div>
-    <aside class="tarjeta perfil aparece">
-      <div class="perfil-cabeza">
-        {icono(base)}
-        <div><p class="perfil-nombre">Nicolas Sgandurra</p><p class="perfil-rol">Técnico electricista y docente</p></div>
-      </div>
-      <dl>
-        <div><dt>Dónde</dt><dd>San Rafael, Mendoza, Argentina</dd></div>
-        <div><dt>Estudios</dt><dd>Ingeniería Electromecánica, UTN San Rafael</dd></div>
-        <div><dt>Docencia</dt><dd>Circuitos Eléctricos 1 y 2, desde 2021</dd></div>
-        <div><dt>Idiomas</dt><dd>Español nativo, inglés intermedio</dd></div>
-      </dl>
-    </aside>
   </div>
 </section>
-
-{laboratorio()}
 
 <section class="bloque" id="trayectoria">
   <p class="etiqueta">Trayectoria</p>
@@ -570,3 +522,59 @@ def generar(destino, fichas, vista_previa=False):
     (salida / "index.html").write_text(portada(fichas, "", vista_previa), encoding="utf-8")
     for d in visibles(fichas):
         (proyectos / f"{d['slug']}.html").write_text(ficha(d, "../", fichas, vista_previa), encoding="utf-8")
+    (salida / "enlaces").mkdir(exist_ok=True)
+    (salida / "enlaces" / "index.html").write_text(enlaces("../", vista_previa), encoding="utf-8")
+
+
+# ---------------------------------------------------------------- Página de enlaces (destino del QR del CV)
+ICONOS = {
+    "linkedin": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" opacity=".16"/><path d="M7.5 10v6.5M7.5 7.4v.1M11 16.5V10m0 2.6c0-1.5 1-2.6 2.4-2.6 1.4 0 2.1.9 2.1 2.6v3.9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>',
+    "portfolio": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" opacity=".16"/><rect x="6" y="7" width="12" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 10h12" stroke="currentColor" stroke-width="1.8"/></svg>',
+    "github": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" opacity=".16"/><path d="M9.5 17.5c-2.6.8-2.6-1.3-3.6-1.6m7.2 3v-2.4c0-.7.1-1.2-.3-1.6 1.6-.2 3.3-.8 3.3-3.6 0-.8-.3-1.5-.8-2 .1-.2.3-1-.1-2 0 0-.6-.2-2 .8a7 7 0 0 0-3.6 0c-1.4-1-2-.8-2-.8-.4 1-.2 1.8-.1 2-.5.5-.8 1.2-.8 2 0 2.8 1.7 3.4 3.3 3.6-.3.3-.4.7-.4 1.2v2.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+}
+
+
+def enlaces(base, vista_previa=False):
+    opciones = [
+        ("linkedin", "LinkedIn", "Experiencia, formación y contacto", LINKEDIN, "#7cb4ff"),
+        ("portfolio", "Portfolio", "Proyectos con capturas y simuladores", f"{base}index.html", VERDE),
+        ("github", "GitHub", "Código y repositorios públicos", GITHUB, "#c4a1ff"),
+    ]
+    filas = "\n".join(
+        f'    <a class="tarjeta destino" href="{E(url)}" style="--tono:{tono_}">{ICONOS[clave]}'
+        f'<span class="destino-texto"><span class="destino-nombre">{E(nombre)}</span><span class="destino-detalle">{E(detalle)}</span></span>'
+        f'<span class="destino-flecha" aria-hidden="true">→</span></a>'
+        for clave, nombre, detalle, url, tono_ in opciones)
+    robots = '<meta name="robots" content="noindex">' if vista_previa else ""
+    return f"""<!doctype html>
+<html lang="es-AR" class="sin-js">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.replace('sin-js', 'js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicolas Sgandurra | Enlaces</title>
+<meta name="description" content="LinkedIn, portfolio y GitHub de Nicolas Sgandurra.">
+<meta name="theme-color" content="#07080a">
+{robots}
+<link rel="icon" href="{base}assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{E(FUENTES)}">
+<link rel="stylesheet" href="{base}assets/portfolio/portfolio.css">
+</head>
+<body>
+<main class="enlaces">
+  <div class="enlaces-caja">
+    {icono(base)}
+    <h1>Nicolas Sgandurra</h1>
+    <p class="enlaces-rol">Técnico electricista y estudiante de Ingeniería Electromecánica</p>
+    <p class="enlaces-pregunta">¿Adónde querés ir?</p>
+    <nav class="destinos" aria-label="Enlaces">
+{filas}
+    </nav>
+    <a class="enlaces-correo" href="mailto:{CORREO}">{CORREO}</a>
+  </div>
+</main>
+</body>
+</html>
+"""

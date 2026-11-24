@@ -26,7 +26,6 @@
   <nav aria-label="Principal"><ul>
     <li><a href="#trabajo">Proyectos</a></li>
     <li class="opcional"><a href="#sobre-mi">Sobre mí</a></li>
-    <li class="opcional"><a href="#laboratorio">Laboratorio</a></li>
     <li class="opcional"><a href="#trayectoria">Trayectoria</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul></nav>
@@ -150,51 +149,10 @@
     <div class="aparece">
       <p class="etiqueta">Sobre mí</p>
       <h2>Hola, soy Nico.</h2>
-      <p>Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN San Rafael.</p>
-      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador; si un cálculo se repite mucho, lo programo. En el software a medida empiezo por sentarme con quien lo va a usar, para ver cómo trabaja.</p>
     </div>
-    <aside class="tarjeta perfil aparece">
-      <div class="perfil-cabeza">
-        <div class="icono"><svg viewBox="0 0 76 76" aria-hidden="true"><text x="38" y="47" text-anchor="middle" fill="#ededef" font-size="27" font-weight="600" letter-spacing="-1.5" font-family="Inter, Segoe UI, sans-serif">NS</text><circle cx="57" cy="22" r="3.5" fill="#4ade9b"/></svg></div>
-        <div><p class="perfil-nombre">Nicolas Sgandurra</p><p class="perfil-rol">Técnico electricista y docente</p></div>
-      </div>
-      <dl>
-        <div><dt>Dónde</dt><dd>San Rafael, Mendoza, Argentina</dd></div>
-        <div><dt>Estudios</dt><dd>Ingeniería Electromecánica, UTN San Rafael</dd></div>
-        <div><dt>Docencia</dt><dd>Circuitos Eléctricos 1 y 2, desde 2021</dd></div>
-        <div><dt>Idiomas</dt><dd>Español nativo, inglés intermedio</dd></div>
-      </dl>
-    </aside>
-  </div>
-</section>
-
-<section class="bloque laboratorio" id="laboratorio">
-  <p class="etiqueta">Laboratorio</p>
-  <h2>¿Qué pasa si se corta el neutro?</h2>
-  <p class="entrada">Es un tema que doy en clase y se entiende mejor jugando. Cambiá las cargas y mirá cómo se corre el neutro: unas fases quedan con tensión de más y otras de menos.</p>
-  <div class="tarjeta ventana aparece">
-    <div class="ventana-barra"><div class="puntos" aria-hidden="true"><i></i><i></i><i></i></div><span>Neutro flotante · teorema de Millman</span><div class="relleno"></div></div>
-    <div class="banco" id="lab-neutro">
-      <div class="fasores-caja"><svg class="fasores" viewBox="-170 -170 340 340" role="img" aria-label="Diagrama fasorial de las tres fases y el punto neutro"><circle cx="0.0" cy="0.0" r="65" stroke="rgba(255,255,255,.09)" fill="none" stroke-width="1"/><circle cx="0.0" cy="0.0" r="130" stroke="rgba(255,255,255,.09)" fill="none" stroke-width="1"/><polyline points="130.0,-0.0 -65.0,-112.6 -65.0,112.6 130.0,-0.0" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 5"/><line id="fasor-r" x1="0" y1="0" x2="130.0" y2="-0.0" stroke="#ff7a7a"/><circle cx="130.0" cy="-0.0" r="4.5" stroke="none" fill="#ff7a7a" stroke-width="2.0"/><text x="152.1" y="5.0" text-anchor="middle">R</text><line id="fasor-t" x1="0" y1="0" x2="-65.0" y2="-112.6" stroke="#7cb4ff"/><circle cx="-65.0" cy="-112.6" r="4.5" stroke="none" fill="#7cb4ff" stroke-width="2.0"/><text x="-76.0" y="-126.7" text-anchor="middle">T</text><line id="fasor-s" x1="0" y1="0" x2="-65.0" y2="112.6" stroke="#4ade9b"/><circle cx="-65.0" cy="112.6" r="4.5" stroke="none" fill="#4ade9b" stroke-width="2.0"/><text x="-76.1" y="136.7" text-anchor="middle">S</text><circle id="punto-n" cx="0" cy="0" r="6.5" fill="#fbbf24"/></svg></div>
-      <div class="controles">
-        <div class="fase" style="--color-fase:#ff7a7a">
-          <label for="carga-r">Fase R, <span id="ohm-r">10 Ω</span></label>
-          <output id="u-r">144,0 V</output>
-          <input id="carga-r" type="range" min="5" max="100" value="10">
-        </div>
-        <div class="fase" style="--color-fase:#7cb4ff">
-          <label for="carga-t">Fase T, <span id="ohm-t">20 Ω</span></label>
-          <output id="u-t">249,5 V</output>
-          <input id="carga-t" type="range" min="5" max="100" value="20">
-        </div>
-        <div class="fase" style="--color-fase:#4ade9b">
-          <label for="carga-s">Fase S, <span id="ohm-s">40 Ω</span></label>
-          <output id="u-s">288,0 V</output>
-          <input id="carga-s" type="range" min="5" max="100" value="40">
-        </div>
-        <label class="interruptor" for="corte"><input id="corte" type="checkbox" checked> Neutro cortado</label>
-        <p class="nota">Desplazamiento del neutro: <output id="u-n">83,2 V</output>. Fuente ideal de 220 V por fase y cargas resistivas.</p>
-      </div>
+    <div class="aparece">
+      <p class="sobre-grande">Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN San Rafael.</p>
+      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador; si un cálculo se repite mucho, lo programo. En el software a medida empiezo por sentarme con quien lo va a usar, para ver cómo trabaja.</p>
     </div>
   </div>
 </section>
@@ -243,24 +201,23 @@
 <li role="option" id="op-1" data-clave="inicio sección "><a href="#inicio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Inicio</span><span class="tipo">Sección</span></a></li>
 <li role="option" id="op-2" data-clave="proyectos sección "><a href="#trabajo" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Proyectos</span><span class="tipo">Sección</span></a></li>
 <li role="option" id="op-3" data-clave="sobre mí sección "><a href="#sobre-mi" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Sobre mí</span><span class="tipo">Sección</span></a></li>
-<li role="option" id="op-4" data-clave="laboratorio sección "><a href="#laboratorio" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Laboratorio</span><span class="tipo">Sección</span></a></li>
-<li role="option" id="op-5" data-clave="trayectoria sección "><a href="#trayectoria" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Trayectoria</span><span class="tipo">Sección</span></a></li>
-<li role="option" id="op-6" data-clave="contacto sección "><a href="#contacto" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Contacto</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-4" data-clave="trayectoria sección "><a href="#trayectoria" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Trayectoria</span><span class="tipo">Sección</span></a></li>
+<li role="option" id="op-5" data-clave="contacto sección "><a href="#contacto" tabindex="-1"><span class="glifo" aria-hidden="true">#</span><span class="nombre">Contacto</span><span class="tipo">Sección</span></a></li>
 <li class="paleta-grupo" role="presentation">Proyectos</li>
-<li role="option" id="op-7" data-clave="nexxo software software y automatización python fastapi postgresql react typescript tauri"><a href="proyectos/nexxo.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Nexxo</span><span class="tipo">Software</span></a></li>
-<li role="option" id="op-8" data-clave="simuladores de circuitos eléctricos sistemas sistemas eléctricos html css javascript"><a href="proyectos/simuladores-electricos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simuladores de circuitos eléctricos</span><span class="tipo">Sistemas</span></a></li>
-<li role="option" id="op-9" data-clave="sitio web de atuel motos sitios sitios web astro typescript supabase cloudflare workers"><a href="proyectos/atuel-motos-web.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Sitio web de Atuel Motos</span><span class="tipo">Sitios</span></a></li>
-<li role="option" id="op-10" data-clave="intercambiador de calor de casco y tubos ingeniería ingeniería mecánica y térmica python ht numpy scipy matplotlib"><a href="proyectos/intercambiador-de-calor.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Intercambiador de calor de casco y tubos</span><span class="tipo">Ingeniería</span></a></li>
-<li role="option" id="op-11" data-clave="cuackdernos sitios sitios web html javascript tailwind css firebase"><a href="proyectos/cuackdernos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Cuackdernos</span><span class="tipo">Sitios</span></a></li>
-<li role="option" id="op-12" data-clave="mibilletera software software y automatización javascript tailwind css chart.js firebase"><a href="proyectos/mibilletera.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">MiBilletera</span><span class="tipo">Software</span></a></li>
-<li role="option" id="op-13" data-clave="triángulo de oswald ingeniería ingeniería mecánica y térmica html javascript canvas"><a href="proyectos/oswald.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Triángulo de Oswald</span><span class="tipo">Ingeniería</span></a></li>
-<li role="option" id="op-14" data-clave="capacidad dinámica de una línea aérea sistemas sistemas eléctricos python numpy matplotlib era5"><a href="proyectos/capacidad-dinamica-de-lineas.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Capacidad dinámica de una línea aérea</span><span class="tipo">Sistemas</span></a></li>
-<li role="option" id="op-15" data-clave="simulador de neutro flotante sistemas sistemas eléctricos javascript teorema de millman"><a href="proyectos/neutro-flotante.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simulador de neutro flotante</span><span class="tipo">Sistemas</span></a></li>
+<li role="option" id="op-6" data-clave="nexxo software software y automatización python fastapi postgresql react typescript tauri"><a href="proyectos/nexxo.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Nexxo</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-7" data-clave="simuladores de circuitos eléctricos sistemas sistemas eléctricos html css javascript"><a href="proyectos/simuladores-electricos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simuladores de circuitos eléctricos</span><span class="tipo">Sistemas</span></a></li>
+<li role="option" id="op-8" data-clave="sitio web de atuel motos sitios sitios web astro typescript supabase cloudflare workers"><a href="proyectos/atuel-motos-web.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Sitio web de Atuel Motos</span><span class="tipo">Sitios</span></a></li>
+<li role="option" id="op-9" data-clave="intercambiador de calor de casco y tubos ingeniería ingeniería mecánica y térmica python ht numpy scipy matplotlib"><a href="proyectos/intercambiador-de-calor.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Intercambiador de calor de casco y tubos</span><span class="tipo">Ingeniería</span></a></li>
+<li role="option" id="op-10" data-clave="cuackdernos sitios sitios web html javascript tailwind css firebase"><a href="proyectos/cuackdernos.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Cuackdernos</span><span class="tipo">Sitios</span></a></li>
+<li role="option" id="op-11" data-clave="mibilletera software software y automatización javascript tailwind css chart.js firebase"><a href="proyectos/mibilletera.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">MiBilletera</span><span class="tipo">Software</span></a></li>
+<li role="option" id="op-12" data-clave="triángulo de oswald ingeniería ingeniería mecánica y térmica html javascript canvas"><a href="proyectos/oswald.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Triángulo de Oswald</span><span class="tipo">Ingeniería</span></a></li>
+<li role="option" id="op-13" data-clave="capacidad dinámica de una línea aérea sistemas sistemas eléctricos python numpy matplotlib era5"><a href="proyectos/capacidad-dinamica-de-lineas.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Capacidad dinámica de una línea aérea</span><span class="tipo">Sistemas</span></a></li>
+<li role="option" id="op-14" data-clave="simulador de neutro flotante sistemas sistemas eléctricos javascript teorema de millman"><a href="proyectos/neutro-flotante.html" tabindex="-1"><span class="glifo" aria-hidden="true">◆</span><span class="nombre">Simulador de neutro flotante</span><span class="tipo">Sistemas</span></a></li>
 <li class="paleta-grupo" role="presentation">Enlaces</li>
-<li role="option" id="op-16" data-clave="copiar correo acción nico.sgandurra@gmail.com"><button type="button" data-copiar="nico.sgandurra@gmail.com" tabindex="-1"><span class="glifo" aria-hidden="true">@</span><span class="nombre">Copiar correo</span><span class="tipo">Acción</span></button></li>
-<li role="option" id="op-17" data-clave="linkedin enlace "><a href="https://www.linkedin.com/in/nicosgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">in</span><span class="nombre">LinkedIn</span><span class="tipo">Enlace</span></a></li>
-<li role="option" id="op-18" data-clave="github enlace código repositorios"><a href="https://github.com/NicoSgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">gh</span><span class="nombre">GitHub</span><span class="tipo">Enlace</span></a></li>
-<li role="option" id="op-19" data-clave="catálogo de fichas enlace lista todos"><a href="catalogo/index.html" tabindex="-1"><span class="glifo" aria-hidden="true">≡</span><span class="nombre">Catálogo de fichas</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-15" data-clave="copiar correo acción nico.sgandurra@gmail.com"><button type="button" data-copiar="nico.sgandurra@gmail.com" tabindex="-1"><span class="glifo" aria-hidden="true">@</span><span class="nombre">Copiar correo</span><span class="tipo">Acción</span></button></li>
+<li role="option" id="op-16" data-clave="linkedin enlace "><a href="https://www.linkedin.com/in/nicosgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">in</span><span class="nombre">LinkedIn</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-17" data-clave="github enlace código repositorios"><a href="https://github.com/NicoSgandurra" tabindex="-1"><span class="glifo" aria-hidden="true">gh</span><span class="nombre">GitHub</span><span class="tipo">Enlace</span></a></li>
+<li role="option" id="op-18" data-clave="catálogo de fichas enlace lista todos"><a href="catalogo/index.html" tabindex="-1"><span class="glifo" aria-hidden="true">≡</span><span class="nombre">Catálogo de fichas</span><span class="tipo">Enlace</span></a></li>
   </ul>
   <p class="paleta-vacia" hidden>Sin resultados</p>
   <div class="paleta-pie"><span><kbd>↑</kbd><kbd>↓</kbd> moverse</span><span><kbd>Enter</kbd> abrir</span><span><kbd>Esc</kbd> cerrar</span></div>
