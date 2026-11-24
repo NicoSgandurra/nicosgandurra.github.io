@@ -312,7 +312,7 @@ def portada(fichas, base, vista_previa):
     </div>
     <div class="aparece">
       <p class="sobre-grande">Me recibí de técnico electricista en 2020 y al año siguiente volví a la misma escuela, como docente de Circuitos Eléctricos. En paralelo curso Ingeniería Electromecánica en la UTN San Rafael.</p>
-      <p>Cuando un tema cuesta explicarlo en el pizarrón, le hago un simulador; si un cálculo se repite mucho, lo programo. En el software a medida empiezo por sentarme con quien lo va a usar, para ver cómo trabaja.</p>
+      <p>Además programo simuladores para mis clases, herramientas de cálculo y software a medida. En el software para terceros empiezo por sentarme con quien lo va a usar, para ver cómo trabaja.</p>
     </div>
   </div>
 </section>
